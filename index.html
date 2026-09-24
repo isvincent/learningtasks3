@@ -1,0 +1,3606 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="auto" data-fontsize="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>AI 生成內容是否應標示？高中公共議題探究互動平台</title>
+  <meta name="description" content="教育部高中跨域素養導向課程，探究 AI 生成內容標示規範。結合 4 節課教學歷程與 7 階段學生探究任務。">
+  <!-- Tailwind CSS CDN for instant utility compatibility -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+    /* --- CSS RESET & ROOT VARIABLES --- */
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      --base-font-size: 16px;
+      
+      /* Light Theme Colors (Bright & Vibrant) */
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f1f5f9;
+      --text-heading: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --border-focus: #6366f1;
+      
+      /* Vibrant Accents */
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --secondary: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #f43f5e;
+      --purple: #8b5cf6;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px -2px rgba(0,0,0,0.08), 0 2px 6px -1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.12), 0 6px 12px -4px rgba(0,0,0,0.06);
+      --shadow-xl: 0 20px 30px -6px rgba(79, 70, 229, 0.15);
+      
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s ease;
+    }
+
+    /* Font Scale Settings */
+    html[data-fontsize="sm"] { --base-font-size: 14px; }
+    html[data-fontsize="base"] { --base-font-size: 16px; }
+    html[data-fontsize="lg"] { --base-font-size: 19px; }
+
+    /* Dark Mode Overrides */
+    html[data-theme="dark"] {
+      --bg-page: #090d16;
+      --bg-surface: #101726;
+      --bg-card: #151d30;
+      --bg-card-alt: #1e293b;
+      --text-heading: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: #1e293b;
+      --border-focus: #818cf8;
+      --primary: #6366f1;
+      --primary-hover: #818cf8;
+      --primary-light: #1e1e38;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+      --shadow-lg: 0 12px 24px rgba(0,0,0,0.6);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html[data-theme="auto"] {
+        --bg-page: #090d16;
+        --bg-surface: #101726;
+        --bg-card: #151d30;
+        --bg-card-alt: #1e293b;
+        --text-heading: #f8fafc;
+        --text-body: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border-color: #1e293b;
+        --border-focus: #818cf8;
+        --primary: #6366f1;
+        --primary-hover: #818cf8;
+        --primary-light: #1e1e38;
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--base-font-size);
+      line-height: 1.65;
+      background-color: var(--bg-page);
+      color: var(--text-body);
+      min-height: 100vh;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Device Simulation Wrapper */
+    #device-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all var(--transition-normal);
+    }
+
+    body[data-device="mobile"] #device-shell {
+      padding: 24px 12px;
+      background: #0f172a;
+    }
+    body[data-device="mobile"] #app-container {
+      max-width: 410px;
+      width: 100%;
+      border-radius: 40px;
+      border: 12px solid #1e293b;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      overflow-x: hidden;
+      background: var(--bg-page);
+    }
+
+    body[data-device="tablet"] #device-shell {
+      padding: 28px 16px;
+      background: #0f172a;
+    }
+    body[data-device="tablet"] #app-container {
+      max-width: 820px;
+      width: 100%;
+      border-radius: 28px;
+      border: 12px solid #1e293b;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      overflow-x: hidden;
+      background: var(--bg-page);
+    }
+
+    body[data-device="desktop"] #app-container {
+      max-width: 1320px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+    }
+
+    body[data-device="auto"] #app-container {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Orientation Modes */
+    body[data-orientation="portrait"] .layout-auto-grid {
+      grid-template-columns: 1fr !important;
+    }
+    body[data-orientation="landscape"] .layout-auto-grid {
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)) !important;
+    }
+
+    /* Containers */
+    #app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: var(--bg-page);
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 24px 20px 60px;
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Header & Navigation Bar */
+    .app-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-size: calc(var(--base-font-size) * 1.15);
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: calc(var(--base-font-size) * 0.78);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-tabs {
+      display: flex;
+      background: var(--bg-card-alt);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      gap: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .nav-tab-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 18px;
+      font-size: calc(var(--base-font-size) * 0.9);
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+
+    .nav-tab-btn:hover {
+      color: var(--text-heading);
+    }
+
+    .nav-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+    }
+
+    .quick-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      color: var(--text-heading);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* Stepper Navigation for Missions */
+    .stepper-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 4px 16px;
+      margin-bottom: 24px;
+      scrollbar-width: thin;
+    }
+
+    .step-pill {
+      flex: 1;
+      min-width: 140px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .step-pill:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .step-pill.active {
+      background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+      border-color: var(--primary);
+      color: white !important;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+    }
+
+    .step-pill.active .step-num {
+      background: white;
+      color: var(--primary);
+    }
+    .step-pill.active .step-title,
+    .step-pill.active .step-desc {
+      color: white;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card-alt);
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: calc(var(--base-font-size) * 0.85);
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: calc(var(--base-font-size) * 0.88);
+      font-weight: 700;
+      color: var(--text-heading);
+      white-space: nowrap;
+    }
+
+    .step-desc {
+      font-size: calc(var(--base-font-size) * 0.72);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Cards & Components */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 24px;
+      transition: all var(--transition-normal);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: calc(var(--base-font-size) * 1.3);
+      font-weight: 800;
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: calc(var(--base-font-size) * 0.75);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-primary { background: #e0e7ff; color: #4338ca; }
+    .badge-success { background: #d1fae5; color: #065f46; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .badge-danger { background: #ffe4e6; color: #9f1239; }
+    .badge-cyan { background: #cffafe; color: #155e75; }
+
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: calc(var(--base-font-size) * 0.95);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card-alt);
+      border-color: var(--border-color);
+      color: var(--text-heading);
+    }
+    .btn-secondary:hover {
+      background: var(--border-color);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+    .btn-success:hover {
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: calc(var(--base-font-size) * 0.92);
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: var(--base-font-size);
+      background: var(--bg-card-alt);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-heading);
+      transition: all var(--transition-fast);
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      background: var(--bg-card);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    textarea.form-control {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    /* Radio Pills */
+    .radio-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .radio-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      cursor: pointer;
+      font-size: calc(var(--base-font-size) * 0.92);
+      font-weight: 600;
+      color: var(--text-body);
+      transition: all var(--transition-fast);
+    }
+
+    .radio-pill:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .radio-pill.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+    }
+
+    /* Settings Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal-window {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      max-width: 720px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-xl);
+      animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--bg-surface);
+      z-index: 2;
+    }
+
+    .modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: var(--bg-card-alt);
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      flex-wrap: wrap;
+    }
+
+    .setting-info {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .setting-title {
+      font-size: calc(var(--base-font-size) * 1.02);
+      font-weight: 700;
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .setting-desc {
+      font-size: calc(var(--base-font-size) * 0.82);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .setting-ctrl {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .segmented-btn {
+      padding: 7px 14px;
+      font-size: calc(var(--base-font-size) * 0.85);
+      font-weight: 600;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-body);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .segmented-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .segmented-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* Grids & Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    /* Stakeholders Carousel/Grid */
+    .role-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .role-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+
+    .role-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.2);
+    }
+
+    .speech-bubble {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      position: relative;
+      font-size: calc(var(--base-font-size) * 0.95);
+      line-height: 1.6;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Timer Widget */
+    .timer-box {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .timer-display {
+      font-size: calc(var(--base-font-size) * 3);
+      font-weight: 800;
+      font-family: monospace;
+      color: #38bdf8;
+      letter-spacing: 2px;
+      margin: 12px 0;
+    }
+
+    /* Rubric Table */
+    .rubric-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .rubric-table th, .rubric-table td {
+      padding: 12px 14px;
+      text-align: left;
+      font-size: calc(var(--base-font-size) * 0.88);
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+    }
+
+    .rubric-table th {
+      background: var(--bg-card-alt);
+      color: var(--text-heading);
+      font-weight: 700;
+    }
+
+    .rubric-cell {
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .rubric-cell:hover {
+      background: var(--primary-light);
+    }
+    .rubric-cell.selected {
+      background: var(--primary);
+      color: white !important;
+      font-weight: 700;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: white !important; color: black !important; font-size: 12pt !important; }
+      .app-header, .stepper-nav, .quick-actions, .modal-backdrop, .no-print { display: none !important; }
+      #app-container { box-shadow: none !important; border: none !important; max-width: 100% !important; }
+      .card { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
+      .btn { display: none !important; }
+      .rubric-table td.selected { background: #e0e7ff !important; color: black !important; -webkit-print-color-adjust: exact; }
+    }
+    
+  </style>
+</head>
+<body data-device="auto" data-orientation="auto">
+  <div id="device-shell">
+    <div id="app-container">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand-section">
+          <svg class="w-8 h-8 inline-block text-indigo-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="12" fill="url(#logo-grad)"/>
+            <path d="M24 10L36 17V31L24 38L12 31V17L24 10Z" stroke="white" stroke-width="2.5" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="24" cy="24" r="5" fill="#38bdf8"/>
+            <path d="M24 19V14M24 29V34M19 24H14M29 24H34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+                <linearGradient id="logo-grad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#4f46e5"/>
+                    <stop offset="1" stop-color="#06b6d4"/>
+                </linearGradient>
+            </defs>
+        </svg>
+          <div>
+            <h1 class="brand-title" data-i18n="app_title">AI 生成內容是否應標示？</h1>
+            <p class="brand-subtitle" data-i18n="app_subtitle">高中跨域公共議題探究互動平台 • 4節課教學歷程 × 7階段探究任務</p>
+          </div>
+        </div>
+
+        <nav class="nav-tabs" role="tablist">
+          <button class="nav-tab-btn active" data-view="student" data-i18n="tab_student">🎒 學生學習任務</button>
+          <button class="nav-tab-btn" data-view="teacher" data-i18n="tab_teacher">👨‍🏫 教師教學歷程</button>
+          <button class="nav-tab-btn" data-view="arena" data-i18n="tab_arena">⚖️ 議題公聽會</button>
+          <button class="nav-tab-btn" data-view="portfolio" data-i18n="tab_portfolio">📑 探究成果成果單</button>
+        </nav>
+
+        <div class="quick-actions">
+          <button id="open-settings-btn" class="icon-btn" title="顯示與操作設定" aria-label="設定">
+            ⚙️
+          </button>
+          <button id="header-sound-quick" class="icon-btn" title="音效切換" aria-label="音效">
+            🔊
+          </button>
+          <button id="header-theme-quick" class="icon-btn" title="切換明暗色彩模式" aria-label="色系">
+            🌗
+          </button>
+          <button id="header-fs-quick" class="icon-btn" title="全螢幕模式" aria-label="全螢幕">
+            ⛶
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SETTINGS MODAL (7 TOGGLES) -->
+    <div id="settings-modal" class="modal-backdrop">
+      <div class="modal-window">
+        <div class="modal-header">
+          <div>
+            <h2 class="card-title text-xl" data-i18n="settings_title">⚙️ 顯示與操作設定</h2>
+            <p class="text-xs text-muted" data-i18n="settings_sub">自訂您的檢視與操作偏好（支援七大即時切換）</p>
+          </div>
+          <button id="close-settings-btn" class="icon-btn">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- 1. Fullscreen -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_fullscreen_title">1. 全螢幕模式 (Fullscreen)</div>
+              <div class="setting-desc" data-i18n="s_fullscreen_desc">切換全螢幕沈浸式教學與學習視野</div>
+            </div>
+            <div class="setting-ctrl">
+              <button id="setting-fs-btn" class="segmented-btn" onclick="settings.toggleFullscreen()">進入全螢幕 ⛶</button>
+            </div>
+          </div>
+
+          <!-- 2. Sound -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_sound_title">2. 音效反饋 (Sound Effects)</div>
+              <div class="setting-desc" data-i18n="s_sound_desc">操作提示音、答對提示音與計時提醒音</div>
+            </div>
+            <div class="setting-ctrl">
+              <div id="sound-group" class="segmented-group flex gap-1">
+                <button class="segmented-btn" data-val="on" onclick="settings.setSound(true)">開啟 🔔</button>
+                <button class="segmented-btn" data-val="off" onclick="settings.setSound(false)">關閉 🔇</button>
+              </div>
+              <button id="btn-test-sound" class="btn btn-secondary text-xs py-1 px-3 ml-2" data-i18n="btn_test_sound">測試音效</button>
+            </div>
+          </div>
+
+          <!-- 3. Device -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_device_title">3. 裝置模式 (Device Mode)</div>
+              <div class="setting-desc" data-i18n="s_device_desc">模擬手機、平板與電腦最佳適應版型</div>
+            </div>
+            <div id="device-group" class="setting-ctrl flex gap-1">
+              <button class="segmented-btn" data-val="auto" onclick="settings.setDevice('auto')">自動</button>
+              <button class="segmented-btn" data-val="mobile" onclick="settings.setDevice('mobile')">手機 📱</button>
+              <button class="segmented-btn" data-val="tablet" onclick="settings.setDevice('tablet')">平板 📟</button>
+              <button class="segmented-btn" data-val="desktop" onclick="settings.setDevice('desktop')">電腦 💻</button>
+            </div>
+          </div>
+
+          <!-- 4. Orientation -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_orient_title">4. 版面配置 (Orientation)</div>
+              <div class="setting-desc" data-i18n="s_orient_desc">自動適應、強制直式或橫式視圖</div>
+            </div>
+            <div id="orient-group" class="setting-ctrl flex gap-1">
+              <button class="segmented-btn" data-val="auto" onclick="settings.setOrientation('auto')">自動</button>
+              <button class="segmented-btn" data-val="portrait" onclick="settings.setOrientation('portrait')">直式 📱</button>
+              <button class="segmented-btn" data-val="landscape" onclick="settings.setOrientation('landscape')">橫式 🖥️</button>
+            </div>
+          </div>
+
+          <!-- 5. Language -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_lang_title">5. 語言切換 (Language)</div>
+              <div class="setting-desc" data-i18n="s_lang_desc">繁體中文與 English 雙語切換</div>
+            </div>
+            <div id="lang-group" class="setting-ctrl flex gap-1">
+              <button class="segmented-btn" data-val="zh" onclick="settings.setLanguage('zh')">繁體中文</button>
+              <button class="segmented-btn" data-val="en" onclick="settings.setLanguage('en')">English</button>
+            </div>
+          </div>
+
+          <!-- 6. Font Size -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_font_title">6. 字體大小 (Font Size)</div>
+              <div class="setting-desc" data-i18n="s_font_desc">縮小 (14px) / 標準 (16px) / 放大 (19px) - 確保高清晰閱讀</div>
+            </div>
+            <div id="font-group" class="setting-ctrl flex gap-1">
+              <button class="segmented-btn" data-val="sm" onclick="settings.setFontSize('sm')">縮小</button>
+              <button class="segmented-btn" data-val="base" onclick="settings.setFontSize('base')">標準</button>
+              <button class="segmented-btn" data-val="lg" onclick="settings.setFontSize('lg')">放大</button>
+            </div>
+          </div>
+
+          <!-- 7. Color Theme -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-title" data-i18n="s_theme_title">7. 色系風格 (Color Theme)</div>
+              <div class="setting-desc" data-i18n="s_theme_desc">跟隨系統、明亮高對比或深邃暗色</div>
+            </div>
+            <div id="theme-group" class="setting-ctrl flex gap-1">
+              <button class="segmented-btn" data-val="auto" onclick="settings.setTheme('auto')">跟隨系統</button>
+              <button class="segmented-btn" data-val="light" onclick="settings.setTheme('light')">亮色 ☀️</button>
+              <button class="segmented-btn" data-val="dark" onclick="settings.setTheme('dark')">暗色 🌙</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="document.getElementById('settings-modal').classList.remove('open')" data-i18n="close_settings">完成並關閉設定</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOTSPOT MODAL -->
+    <div id="hotspot-modal" class="modal-backdrop">
+      <div class="modal-window max-w-lg">
+        <div class="modal-header">
+          <h3 id="hotspot-modal-title" class="font-bold text-lg text-heading">熱點線索解析</h3>
+          <button class="icon-btn" onclick="closeHotspotModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <p id="hotspot-modal-desc" class="text-body leading-relaxed"></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="closeHotspotModal()">我理解了 👍</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- C2PA CERTIFICATE INSPECTOR MODAL -->
+    <div id="c2pa-modal" class="modal-backdrop">
+      <div class="modal-window max-w-2xl">
+        <div class="modal-header">
+          <div class="flex items-center gap-3">
+            <svg viewBox="0 0 80 80" class="w-16 h-16 inline-block" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#10b981"/>
+                    <stop offset="100%" stop-color="#059669"/>
+                </linearGradient>
+            </defs>
+            <path d="M40,10 L68,22 V42 C68,58 55,70 40,75 C25,70 12,58 12,42 V22 L40,10 Z" fill="url(#shield-grad)" stroke="#34d399" stroke-width="2.5"/>
+            <path d="M30,40 L37,47 L52,32" stroke="white" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+            <div>
+              <h3 class="font-bold text-lg text-heading">C2PA 數位憑證驗證模擬器 (Content Credentials)</h3>
+              <p class="text-xs text-muted">符合開放標準 C2PA 2.4 規範之加密元數據驗證</p>
+            </div>
+          </div>
+          <button class="icon-btn" onclick="closeC2PAModal()">✕</button>
+        </div>
+        <div class="modal-body text-sm space-y-3">
+          <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-lg border border-emerald-300 dark:border-emerald-700">
+            <span class="font-bold text-emerald-800 dark:text-emerald-300">數位簽章狀態：✅ 簽章有效 (Valid Digital Signature)</span>
+            <div class="text-xs text-emerald-700 dark:text-emerald-400 mt-1">憑證由「卓越高中新聞與資訊中心 (CA)」數位簽署發布，未遭篡改。</div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-xs bg-slate-100 dark:bg-slate-800 p-3 rounded-lg">
+            <div><strong>資產類型：</strong> 數位海報圖像 (image/png)</div>
+            <div><strong>發布時間：</strong> 2026-09-24 14:30:20 (UTC+8)</div>
+            <div><strong>生成工具：</strong> Generative Canvas v4.2</div>
+            <div><strong>主體授權：</strong> 校慶籌備會學術組審核核定</div>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-1">編修歷程鏈 (Edit Actions Timeline)：</h4>
+            <div class="space-y-1.5 text-xs text-muted border-l-2 border-primary pl-3 ml-2">
+              <div>1. <strong>原始建立：</strong> 匯入真實校徽向量圖示 (由校刊圖庫)</div>
+              <div>2. <strong>AI 輔助生成：</strong> 使用提示詞生成幾何量子背景波紋 (Inpainting: Background only)</div>
+              <div>3. <strong>文字排版：</strong> 新增演講標題與真實活動流程文案</div>
+              <div>4. <strong>簽署密封：</strong> 新增 C2PA 聲明並加密生成驗證清單 (Manifest)</div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50 dark:bg-amber-950/40 rounded-lg border border-amber-300 dark:border-amber-700 text-xs text-amber-900 dark:text-amber-200">
+            <strong>⚠️ 探究思維提醒：</strong> C2PA 憑證能證明此作品的「產製與修訂歷程」，但<strong>不能直接證明內容名言是否為真理</strong>；缺少憑證也<strong>不代表圖片必然是偽造的</strong>（可能只是轉傳過程中被社交平台去除了中繼資料）。
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="closeC2PAModal()">關閉驗證視窗</button>
+        </div>
+      </div>
+    </div>
+    
+
+      <main class="main-content">
+
+    <div id="view-student" class="view-panel">
+      <!-- Student Info Bar -->
+      <div class="card p-4 mb-4 bg-gradient-to-r from-indigo-50/50 to-cyan-50/50 dark:from-indigo-950/20 dark:to-cyan-950/20">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <span class="badge badge-primary">高中公共議題探究</span>
+            <span class="text-sm font-bold text-heading">學生個人探究紀錄表</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 text-xs">
+            <label class="flex items-center gap-1 font-semibold">班級：<input id="student-class" type="text" class="form-control py-1 px-2 w-24 text-xs" placeholder="例: 高二3班"></label>
+            <label class="flex items-center gap-1 font-semibold">座號：<input id="student-seat" type="text" class="form-control py-1 px-2 w-16 text-xs" placeholder="例: 15"></label>
+            <label class="flex items-center gap-1 font-semibold">姓名：<input id="student-name" type="text" class="form-control py-1 px-2 w-28 text-xs" placeholder="姓名"></label>
+            <label class="flex items-center gap-1 font-semibold">小組：<input id="student-group" type="text" class="form-control py-1 px-2 w-20 text-xs" placeholder="第 2 組"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stepper Nav (7 Missions) -->
+      <div class="stepper-nav">
+        <div class="step-pill active" data-step="1">
+          <div class="step-num">1</div>
+          <div><div class="step-title">觀察現象</div><div class="step-desc">海報比對與初探</div></div>
+        </div>
+        <div class="step-pill" data-step="2">
+          <div class="step-num">2</div>
+          <div><div class="step-title">提出問題</div><div class="step-desc">拆解核心與假設</div></div>
+        </div>
+        <div class="step-pill" data-step="3">
+          <div class="step-num">3</div>
+          <div><div class="step-title">檢驗證據</div><div class="step-desc">法規、技術與教育</div></div>
+        </div>
+        <div class="step-pill" data-step="4">
+          <div class="step-num">4</div>
+          <div><div class="step-title">比較立場</div><div class="step-desc">六大角色與方案</div></div>
+        </div>
+        <div class="step-pill" data-step="5">
+          <div class="step-num">5</div>
+          <div><div class="step-title">形成主張</div><div class="step-desc">CER論證結構寫作</div></div>
+        </div>
+        <div class="step-pill" data-step="6">
+          <div class="step-num">6</div>
+          <div><div class="step-title">採取行動</div><div class="step-desc">校園指引與同儕測試</div></div>
+        </div>
+        <div class="step-pill" data-step="7">
+          <div class="step-num">7</div>
+          <div><div class="step-title">反思修正</div><div class="step-desc">Exit Ticket與歷程</div></div>
+        </div>
+      </div>
+
+      <!-- MISSION 1 -->
+      <div class="mission-card" data-mission="1">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 1 / 階段一</span>
+              <h2 class="card-title mt-1">觀察現象：校園情境海報比對與第一立場</h2>
+            </div>
+            <div class="text-xs text-muted">點擊海報上的 <span class="text-red-500 font-bold">紅點</span> 與 <span class="text-emerald-500 font-bold">綠點</span> 探索微觀線索</div>
+          </div>
+
+          <div class="grid-2 gap-6 mb-6">
+            <!-- Poster A -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-red-600">🔴 版本甲：未揭露 AI 參與</span>
+                <span class="text-xs text-muted">點擊數字圈標記</span>
+              </div>
+              <svg viewBox="0 0 400 560" class="w-full h-auto rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 bg-slate-900" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background with subtle tech gradient -->
+            <defs>
+                <linearGradient id="bg-poster-a" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0f172a"/>
+                    <stop offset="50%" stop-color="#1e1b4b"/>
+                    <stop offset="100%" stop-color="#311042"/>
+                </linearGradient>
+                <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#fbbf24"/>
+                </linearGradient>
+                <linearGradient id="glow-face" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9"/>
+                </linearGradient>
+            </defs>
+            <rect width="400" height="560" rx="16" fill="url(#bg-poster-a)"/>
+            
+            <!-- Poster Header -->
+            <rect x="25" y="24" width="70" height="22" rx="4" fill="#ef4444"/>
+            <text x="60" y="39" fill="white" font-size="11" font-weight="bold" text-anchor="middle">年度旗艦</text>
+            <text x="105" y="40" fill="#94a3b8" font-size="12" font-weight="600">卓越高中 • 70週年校慶大師講座</text>
+            
+            <text x="25" y="78" fill="white" font-size="24" font-weight="800">量子科技與未來社會</text>
+            <text x="25" y="100" fill="#38bdf8" font-size="13" font-weight="600">探索生成式 AI 與次世代運算的終極可能</text>
+
+            <!-- Ultra-realistic Portrait Illustration (AI Generated without label) -->
+            <g transform="translate(45, 120)">
+                <!-- Back glow -->
+                <circle cx="155" cy="120" r="110" fill="url(#glow-face)"/>
+                <!-- Silhouette / Face mockup -->
+                <path d="M155,40 C190,40 215,65 215,105 C215,135 200,155 185,165 C195,175 220,185 240,210 C245,216 245,230 245,240 L65,240 C65,230 65,216 70,210 C90,185 115,175 125,165 C110,155 95,135 95,105 C95,65 120,40 155,40 Z" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+                <!-- Speaker Eyes & Hair details (AI stylized) -->
+                <ellipse cx="135" cy="100" rx="6" ry="3" fill="#38bdf8"/>
+                <ellipse cx="175" cy="100" rx="6" ry="3" fill="#38bdf8"/>
+                <path d="M130,90 Q140,86 148,90" stroke="#93c5fd" stroke-width="2" fill="none"/>
+                <path d="M162,90 Q170,86 180,90" stroke="#93c5fd" stroke-width="2" fill="none"/>
+                <path d="M155,105 L155,125 L148,128" stroke="#64748b" stroke-width="2" fill="none"/>
+                <path d="M142,138 Q155,145 168,138" stroke="#f43f5e" stroke-width="2" fill="none"/>
+                <path d="M98,80 C95,45 125,30 155,30 C185,30 215,45 212,80 C200,55 170,50 155,50 C140,50 110,55 98,80 Z" fill="#334155"/>
+                <!-- Realistic Suit Collar -->
+                <path d="M125,180 L155,230 L185,180" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.5"/>
+                <path d="M155,200 L155,240" stroke="#f59e0b" stroke-width="3"/>
+            </g>
+
+            <!-- Hotspot 1: Realistic Face hotspot -->
+            <g class="cursor-pointer group" onclick="window.triggerHotspot('posterA_face')">
+                <circle cx="200" cy="225" r="14" fill="#ef4444" fill-opacity="0.9">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="200" y="230" fill="white" font-size="12" font-weight="bold" text-anchor="middle">1</text>
+            </g>
+
+            <!-- Speaker Details Card on Poster -->
+            <rect x="25" y="375" width="350" height="95" rx="10" fill="#1e293b" fill-opacity="0.8" stroke="#334155"/>
+            <text x="40" y="400" fill="url(#gold-grad)" font-size="15" font-weight="bold">特邀主講人：林立晨 博士</text>
+            <text x="40" y="418" fill="#94a3b8" font-size="12">全球前沿量子計算實驗室 首席研究員</text>
+            <text x="40" y="442" fill="#e2e8f0" font-size="12.5" font-style="italic">「未來的競爭不在於掌握算力，而在於誰能堅守人類思維的真實。」</text>
+            <text x="40" y="460" fill="#64748b" font-size="11">時間：2026/10/18 (五) 14:00 | 地點：大禮堂</text>
+
+            <!-- Hotspot 2: Realistic Quote hotspot -->
+            <g class="cursor-pointer group" onclick="window.triggerHotspot('posterA_quote')">
+                <circle cx="360" cy="442" r="14" fill="#ef4444" fill-opacity="0.9">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="360" y="447" fill="white" font-size="12" font-weight="bold" text-anchor="middle">2</text>
+            </g>
+
+            <!-- Bottom Disclaimer Area (Empty / Missing Label) -->
+            <rect x="25" y="485" width="350" height="50" rx="8" fill="#0f172a" stroke="#ef4444" stroke-dasharray="4 4"/>
+            <text x="200" y="508" fill="#f87171" font-size="12" font-weight="bold" text-anchor="middle">⚠️ 未揭露任何 AI 使用資訊</text>
+            <text x="200" y="525" fill="#94a3b8" font-size="10.5" text-anchor="middle">照片為 AI 生成之虛構人物，名言為系統擬作，讀者無從知曉</text>
+        </svg>
+            </div>
+
+            <!-- Poster B -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-emerald-600">🟢 版本乙：標示背景生成並具憑證</span>
+                <span class="text-xs text-muted">點擊數字圈標記</span>
+              </div>
+              <svg viewBox="0 0 400 560" class="w-full h-auto rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 bg-slate-900" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="bg-poster-b" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#042f2e"/>
+                    <stop offset="40%" stop-color="#0f172a"/>
+                    <stop offset="100%" stop-color="#1e1b4b"/>
+                </linearGradient>
+                <linearGradient id="teal-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#14b8a6"/>
+                    <stop offset="100%" stop-color="#10b981"/>
+                </linearGradient>
+            </defs>
+            <rect width="400" height="560" rx="16" fill="url(#bg-poster-b)"/>
+            
+            <!-- Poster Header -->
+            <rect x="25" y="24" width="70" height="22" rx="4" fill="#10b981"/>
+            <text x="60" y="39" fill="white" font-size="11" font-weight="bold" text-anchor="middle">資訊透明</text>
+            <text x="105" y="40" fill="#94a3b8" font-size="12" font-weight="600">卓越高中 • 70週年校慶大師講座</text>
+            
+            <text x="25" y="78" fill="white" font-size="24" font-weight="800">量子科技與未來社會</text>
+            <text x="25" y="100" fill="#2dd4bf" font-size="13" font-weight="600">探索生成式 AI 與次世代運算的終極可能</text>
+
+            <!-- Generative Background Visual (Explicitly stylized AI Art) -->
+            <g transform="translate(30, 120)">
+                <path d="M20,160 Q70,40 170,110 T320,80" fill="none" stroke="#2dd4bf" stroke-width="3" opacity="0.8"/>
+                <path d="M20,180 Q80,70 180,130 T320,110" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+                <path d="M20,200 Q90,100 190,150 T320,140" fill="none" stroke="#818cf8" stroke-width="1.5" opacity="0.5"/>
+                <!-- Quantum Particles -->
+                <circle cx="80" cy="90" r="5" fill="#38bdf8"/>
+                <circle cx="170" cy="110" r="7" fill="#2dd4bf"/>
+                <circle cx="250" cy="85" r="4" fill="#a78bfa"/>
+                <rect x="60" y="140" width="220" height="80" rx="12" fill="#0f172a" fill-opacity="0.85" stroke="#14b8a6" stroke-width="1"/>
+                <text x="170" y="175" fill="white" font-size="14" font-weight="bold" text-anchor="middle">主講：國家科學實驗室專家群</text>
+                <text x="170" y="198" fill="#94a3b8" font-size="12" text-anchor="middle">內容由校慶學術籌備委員會親自核定</text>
+            </g>
+
+            <!-- Hotspot 3: Generative art hotspot -->
+            <g class="cursor-pointer group" onclick="window.triggerHotspot('posterB_art')">
+                <circle cx="110" cy="205" r="14" fill="#10b981" fill-opacity="0.9">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="110" y="210" fill="white" font-size="12" font-weight="bold" text-anchor="middle">3</text>
+            </g>
+
+            <!-- Event Details -->
+            <rect x="25" y="375" width="350" height="75" rx="10" fill="#1e293b" fill-opacity="0.8" stroke="#334155"/>
+            <text x="40" y="402" fill="url(#teal-grad)" font-size="14" font-weight="bold">校園公開講座系列 • 第 4 場</text>
+            <text x="40" y="423" fill="#cbd5e1" font-size="12">真實專家出席、講題文稿由籌備組審閱，非虛構擬作</text>
+            <text x="40" y="440" fill="#64748b" font-size="11">時間：2026/10/18 (五) 14:00 | 地點：大禮堂</text>
+
+            <!-- Hotspot 4: C2PA Badge & Disclosure hotspot -->
+            <g class="cursor-pointer group" onclick="window.triggerHotspot('posterB_c2pa')">
+                <circle cx="360" cy="495" r="14" fill="#10b981" fill-opacity="0.9">
+                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="360" y="500" fill="white" font-size="12" font-weight="bold" text-anchor="middle">4</text>
+            </g>
+
+            <!-- Bottom Transparency Label (C2PA & Clear Statement) -->
+            <rect x="25" y="470" width="350" height="65" rx="8" fill="#064e3b" fill-opacity="0.6" stroke="#10b981" stroke-width="1.5"/>
+            <!-- C2PA Mini Icon -->
+            <g transform="translate(38, 482)">
+                <rect width="26" height="26" rx="6" fill="#10b981"/>
+                <path d="M8,13 L12,17 L18,9" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            </g>
+            <text x="74" y="495" fill="#a7f3d0" font-size="12" font-weight="bold">Content Credentials 數位內容標示 (C2PA)</text>
+            <text x="74" y="512" fill="#6ee7b7" font-size="11">✨ 本海報背景由 AI 輔助生成，活動內容與主講資訊經主辦單位審核。</text>
+            <text x="74" y="525" fill="#34d399" font-size="9.5">憑證簽章：卓越高中新聞社 (Verified) • 點擊檢視元數據</text>
+        </svg>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">🔍 我看到的線索、疑點與兩張海報引發的不同判斷：</label>
+            <textarea id="student-notes-1" class="form-control" placeholder="記錄你對講者肖像真偽、背景繪圖、演講引言可信度，以及閱讀時產生的心理信任度差異..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">⚖️ 我的課前第一立場 (Initial Stance)：</label>
+            <div id="stance-pills" class="radio-pill-group">
+              <div class="radio-pill" data-val="全部標示">🔴 全部標示（只要有 AI 參與均須標明）</div>
+              <div class="radio-pill" data-val="特定情況標示">🟡 只在特定情況標示（如仿冒人像或重要資訊）</div>
+              <div class="radio-pill" data-val="不要求標示">🟢 不要求強制標示（交由創作者自由決定）</div>
+              <div class="radio-pill" data-val="尚不確定">⚪ 尚不確定（需要更多法規與技術證據）</div>
+            </div>
+            <input type="hidden" id="student-stance-1" value="">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">⭐ 我的理由及信心程度（0–5 分）：</label>
+            <div class="flex items-center gap-4">
+              <input id="conf-slider" type="range" min="0" max="5" value="3" class="w-48">
+              <span id="conf-val" class="font-bold text-lg text-primary">3</span>
+              <span id="conf-desc" class="text-xs text-muted">中等信心</span>
+            </div>
+            <textarea id="student-stance-reason-1" class="form-control mt-2" placeholder="說明你選擇該立場的初步考量..."></textarea>
+          </div>
+
+          <!-- Live Voting Simulation -->
+          <div class="p-4 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700">
+            <h4 class="font-bold text-sm mb-2">📊 班級課前初探立場即時分布（全校 120 位同學樣本參考）</h4>
+            <div class="space-y-2 text-xs">
+              <div>
+                <div class="flex justify-between mb-0.5"><span>全部標示 (42%)</span><span>50 人</span></div>
+                <div class="w-full bg-slate-200 rounded-full h-2"><div class="bg-indigo-600 h-2 rounded-full" style="width: 42%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-0.5"><span>特定情況標示 (45%)</span><span>54 人</span></div>
+                <div class="w-full bg-slate-200 rounded-full h-2"><div class="bg-emerald-500 h-2 rounded-full" style="width: 45%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-0.5"><span>不要求標示 (5%)</span><span>6 人</span></div>
+                <div class="w-full bg-slate-200 rounded-full h-2"><div class="bg-amber-500 h-2 rounded-full" style="width: 5%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-0.5"><span>尚不確定 (8%)</span><span>10 人</span></div>
+                <div class="w-full bg-slate-200 rounded-full h-2"><div class="bg-slate-400 h-2 rounded-full" style="width: 8%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 2 -->
+      <div class="mission-card" data-mission="2" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 2 / 階段二</span>
+              <h2 class="card-title mt-1">提出問題：把「要不要標」拆成具體可探究問題</h2>
+            </div>
+          </div>
+
+          <p class="text-sm text-muted mb-4">
+            「要不要標示」太過廣泛，在公共政策中必須拆解為：<strong>誰標示、何時標、標什麼、標在哪裡、例外狀況、違反如何處理</strong>。
+          </p>
+
+          <!-- 6-W Exploration Matrix -->
+          <div class="grid-3 gap-3 mb-6">
+            <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-lg">
+              <div class="font-bold text-xs text-indigo-800 dark:text-indigo-300">👤 誰來標？(Who)</div>
+              <div class="text-xs text-muted mt-1">AI 軟體平台商、活動發布者、還是學生創作者自己？</div>
+            </div>
+            <div class="p-3 bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800 rounded-lg">
+              <div class="font-bold text-xs text-cyan-800 dark:text-cyan-300">📝 標什麼？(What)</div>
+              <div class="text-xs text-muted mt-1">標註工具名稱？提示詞 Prompt？還是標註修圖比例？</div>
+            </div>
+            <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+              <div class="font-bold text-xs text-emerald-800 dark:text-emerald-300">⏱️ 何時標？(When)</div>
+              <div class="text-xs text-muted mt-1">只要動用 AI 算力就要標，還是達到「實質修改」才標？</div>
+            </div>
+            <div class="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-lg">
+              <div class="font-bold text-xs text-amber-800 dark:text-amber-300">📍 標在哪？(Where)</div>
+              <div class="text-xs text-muted mt-1">角落浮水印、檔案元數據 (Metadata)、還是文末註腳？</div>
+            </div>
+            <div class="p-3 bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 rounded-lg">
+              <div class="font-bold text-xs text-purple-800 dark:text-purple-300">🛡️ 例外條款？(Exception)</div>
+              <div class="text-xs text-muted mt-1">藝術創作、幽默諷刺、個人修錯字是否能豁免免標？</div>
+            </div>
+            <div class="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 rounded-lg">
+              <div class="font-bold text-xs text-rose-800 dark:text-rose-300">⚖️ 違規處理？(Sanctions)</div>
+              <div class="text-xs text-muted mt-1">作業扣分、社群下架、記過、還是同儕輔導對話？</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">❓ 我的核心研究問題 (Research Question)：</label>
+            <input id="student-q-2" type="text" class="form-control" placeholder="例：當高中生在小論文研究中僅使用 AI 潤飾文句時，是否有強制標示的必要？">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">💡 我目前的兩個探究假設（請辨別為：事實、推測或價值判斷）：</label>
+            <div class="space-y-3">
+              <div class="p-3 border border-border-color rounded-lg bg-card-alt">
+                <span class="font-bold text-xs">假設 1：</span>
+                <input id="student-h1-2" type="text" class="form-control mt-1 mb-2 text-sm" placeholder="輸入假設 1...">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-muted">本假設性質：</span>
+                  <label class="inline-flex items-center gap-1"><input type="radio" name="h1-type" value="fact"> 客觀事實</label>
+                  <label class="inline-flex items-center gap-1"><input type="radio" name="h1-type" value="inference" checked> 推測假設</label>
+                  <label class="inline-flex items-center gap-1"><input type="radio" name="h1-type" value="value"> 價值判斷</label>
+                </div>
+              </div>
+
+              <div class="p-3 border border-border-color rounded-lg bg-card-alt">
+                <span class="font-bold text-xs">假設 2：</span>
+                <input id="student-h2-2" type="text" class="form-control mt-1 mb-2 text-sm" placeholder="輸入假設 2...">
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-muted">本假設性質：</span>
+                  <label class="inline-flex items-center gap-1"><input type="radio" name="h2-type" value="fact"> 客觀事實</label>
+                  <label class="inline-flex items-center gap-1"><input type="radio" name="h2-type" value="inference"> 推測假設</label>
+                  <label class="inline-flex items-center gap-1"><input type="radio" name="h2-type" value="value" checked> 價值判斷</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 3 -->
+      <div class="mission-card" data-mission="3" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 3 / 階段三</span>
+              <h2 class="card-title mt-1">查找與檢驗證據：法規條文、技術憑證與教育指引</h2>
+            </div>
+            <div class="text-xs text-muted">資料查核：2026 年 9 月現行基準</div>
+          </div>
+
+          <!-- 4 Evidence Reference Cards -->
+          <div class="grid-2 gap-4 mb-6">
+            <!-- Taiwan -->
+            <div class="p-4 border-2 border-indigo-200 dark:border-indigo-800 rounded-xl bg-indigo-50/40 dark:bg-indigo-950/20">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-indigo-700 dark:text-indigo-300">🇹🇼 T. 台灣規範（數位發展部）</span>
+                <span class="badge badge-primary">法規標準</span>
+              </div>
+              <div class="text-xs text-body space-y-1 mb-3">
+                <p><strong>條文核心：</strong> 依《詐欺犯罪危害防制條例》，特定網路廣告若使用「深度偽造 (Deepfake)」技術或 AI 生成之個人影像，必須顯著揭露。</p>
+                <p><strong>判讀界線警示：</strong> 規範對象為「特定商業/金融網路廣告」；<strong>不可直接推論至所有校園文字或學生日常作業！</strong></p>
+              </div>
+              <a href="https://moda.gov.tw/ADI/news/latest-news/12816" target="_blank" class="text-xs text-indigo-600 hover:underline">🔗 數發部最新公告查核</a>
+            </div>
+
+            <!-- EU -->
+            <div class="p-4 border-2 border-cyan-200 dark:border-cyan-800 rounded-xl bg-cyan-50/40 dark:bg-cyan-950/20">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-cyan-700 dark:text-cyan-300">🇪🇺 E. 歐盟規範（EU AI Act 第50條）</span>
+                <span class="badge badge-cyan">國際法</span>
+              </div>
+              <div class="text-xs text-body space-y-1 mb-3">
+                <p><strong>條文核心：</strong> 區分「系統提供者」之機器可讀標記（浮水印、中繼資料）與「部署者」對公眾之透明揭露（深偽、個人像）。2026年8月2日生效。</p>
+                <p><strong>判讀界線警示：</strong> 條文對諷刺、藝術與合法創作設有合理例外；不能簡化為所有 AI 生成像素都一律以粗暴標籤遮蔽。</p>
+              </div>
+              <a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50" target="_blank" class="text-xs text-cyan-600 hover:underline">🔗 歐盟第50條原文查核</a>
+            </div>
+
+            <!-- Tech / C2PA -->
+            <div class="p-4 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-emerald-700 dark:text-emerald-300">🛡️ C. 技術標準（C2PA 憑證）</span>
+                <span class="badge badge-success">技術架構</span>
+              </div>
+              <div class="text-xs text-body space-y-1 mb-3">
+                <p><strong>技術核心：</strong> Content Credentials 透過加密數位簽章記錄素材產製來源與後製編修鏈。</p>
+                <p><strong>判讀界線警示：</strong> 憑證提供「可追溯來源歷程」，<strong>不保證內容說法為真</strong>；缺少憑證<strong>不能直接認定為假造</strong>。</p>
+              </div>
+              <button class="btn btn-secondary text-xs py-1 px-3" onclick="App.openC2PAInspector()">🔍 模擬驗證海報乙之憑證</button>
+            </div>
+
+            <!-- UNESCO -->
+            <div class="p-4 border-2 border-amber-200 dark:border-amber-800 rounded-xl bg-amber-50/40 dark:bg-amber-950/20">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-amber-700 dark:text-amber-300">🏛️ U. 教育指引（UNESCO 建議）</span>
+                <span class="badge badge-warning">教育倫理</span>
+              </div>
+              <div class="text-xs text-body space-y-1 mb-3">
+                <p><strong>指引核心：</strong> 強調保護學生隱私數據、年齡適應性與教育有效性；保留人類自主思考與教師教學彈性。</p>
+                <p><strong>判讀界線警示：</strong> 校園指引不應將 AI 使用直接等同於學術不誠實，重點在於促進高層次批判思考。</p>
+              </div>
+              <a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research" target="_blank" class="text-xs text-amber-600 hover:underline">🔗 UNESCO 教育指引官方頁</a>
+            </div>
+          </div>
+
+          <!-- Fallacy Buster Interactive Quiz -->
+          <div class="card bg-slate-50 dark:bg-slate-800/80 p-4 border border-slate-300 dark:border-slate-700 mb-6">
+            <h4 class="font-bold text-sm text-heading mb-2">💡 批判思考檢驗挑戰（避免推論過度）：</h4>
+            
+            <div class="space-y-4 text-xs">
+              <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-border-color">
+                <p class="font-semibold mb-2">【挑戰 1】一張圖片如果在社群網站上下載後「查不到 C2PA 數位憑證」，我們能直接斷定這張圖必然是 AI 偽造的嗎？</p>
+                <div class="flex gap-3">
+                  <button class="segmented-btn" onclick="App.checkFallacy(1, 'yes')">可以，沒憑證就是假的</button>
+                  <button class="segmented-btn" onclick="App.checkFallacy(1, 'no')">不能，缺少憑證不等於偽造</button>
+                </div>
+                <div id="fallacy-feedback-1" class="hidden"></div>
+              </div>
+
+              <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-border-color">
+                <p class="font-semibold mb-2">【挑戰 2】台灣數發部規定廣告使用深偽要標示，這代表「高中生在校內國文作業中用 AI 潤飾文字」也依法必須強制公開標示嗎？</p>
+                <div class="flex gap-3">
+                  <button class="segmented-btn" onclick="App.checkFallacy(2, 'yes')">是的，全國所有內容一律強制</button>
+                  <button class="segmented-btn" onclick="App.checkFallacy(2, 'no')">不是，該法規僅限特定網路廣告</button>
+                </div>
+                <div id="fallacy-feedback-2" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Evidence Record Cards -->
+          <h3 class="font-bold text-base mb-3 text-heading">📝 我的三張查核證據卡（每張卡記錄一項一手可靠資料）：</h3>
+          <div class="space-y-4">
+            <div class="p-4 border border-border-color rounded-xl bg-card">
+              <div class="font-bold text-sm text-primary mb-2">證據卡 1 (Evidence Card 1)</div>
+              <textarea id="card1-notes" class="form-control text-xs" placeholder="記錄來源機構、發布日期、條文重點、它支持哪種標示主張，以及它「不能證明什麼」..."></textarea>
+            </div>
+            <div class="p-4 border border-border-color rounded-xl bg-card">
+              <div class="font-bold text-sm text-cyan-600 mb-2">證據卡 2 (Evidence Card 2)</div>
+              <textarea id="card2-notes" class="form-control text-xs" placeholder="記錄第二項官方規範或技術規格重點..."></textarea>
+            </div>
+            <div class="p-4 border border-border-color rounded-xl bg-card">
+              <div class="font-bold text-sm text-emerald-600 mb-2">證據卡 3 (Evidence Card 3)</div>
+              <textarea id="card3-notes" class="form-control text-xs" placeholder="記錄第三項教育指引或平台技術規範重點..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 4 -->
+      <div class="mission-card" data-mission="4" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 4 / 階段四</span>
+              <h2 class="card-title mt-1">比較立場：六大角色利益公聽會與方案權衡天平</h2>
+            </div>
+            <div class="text-xs text-muted">點選下方角色，進入各方核心關切與辯駁立場</div>
+          </div>
+
+          <!-- 6 Stakeholders Roundtable Grid -->
+          <div class="grid-3 gap-3 mb-6">
+            <div class="role-card active" data-role="student">
+              <div class="flex items-center gap-3">
+                <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+            <!-- Head & hair -->
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M30,42 C30,24 70,24 70,42 C65,30 55,28 50,30 C45,28 35,30 30,42 Z" fill="#1e293b"/>
+            <!-- Cap or glasses -->
+            <circle cx="43" cy="46" r="5" fill="none" stroke="#2563eb" stroke-width="2"/>
+            <circle cx="57" cy="46" r="5" fill="none" stroke="#2563eb" stroke-width="2"/>
+            <path d="M48,46 L52,46" stroke="#2563eb" stroke-width="2"/>
+            <!-- Smile -->
+            <path d="M45,58 Q50,63 55,58" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Hoodie -->
+            <path d="M22,94 C25,72 38,68 50,68 C62,68 75,72 78,94 Z" fill="#3b82f6"/>
+            <path d="M42,68 L50,82 L58,68" stroke="#1d4ed8" stroke-width="2" fill="none"/>
+        </svg>
+                <div>
+                  <h4 class="font-bold text-sm text-heading">高中學生</h4>
+                  <span class="text-xs text-muted">小宇 • 課業公平</span>
+                </div>
+              </div>
+              <p class="text-xs text-body line-clamp-2">「改個英文錯字也要申報？我怕被貼作弊標籤，但也不想同學作弊拿高分。」</p>
+            </div>
+
+            <div class="role-card" data-role="teacher">
+              <div class="flex items-center gap-3">
+                <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#ffedd5"/>
+            <!-- Hair neat -->
+            <path d="M28,45 C28,26 72,26 72,45 C68,32 50,30 50,30 C50,30 32,32 28,45 Z" fill="#475569"/>
+            <!-- Glasses -->
+            <rect x="36" y="42" width="12" height="9" rx="2" fill="none" stroke="#475569" stroke-width="2"/>
+            <rect x="52" y="42" width="12" height="9" rx="2" fill="none" stroke="#475569" stroke-width="2"/>
+            <path d="M48,46 L52,46" stroke="#475569" stroke-width="2"/>
+            <path d="M45,58 Q50,62 55,58" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round"/>
+            <!-- Formal suit -->
+            <path d="M20,94 C24,70 38,66 50,66 C62,66 76,70 80,94 Z" fill="#0f766e"/>
+            <polygon points="46,66 54,66 52,78 48,78" fill="#f59e0b"/>
+        </svg>
+                <div>
+                  <h4 class="font-bold text-sm text-heading">學科教師</h4>
+                  <span class="text-xs text-muted">陳老師 • 教學評量</span>
+                </div>
+              </div>
+              <p class="text-xs text-body line-clamp-2">「我想看你真正的批判思考，標示應輔助師生對話，而不是變成應付形式的表單。」</p>
+            </div>
+
+            <div class="role-card" data-role="creator">
+              <div class="flex items-center gap-3">
+                <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#f3e8ff" stroke="#a855f7" stroke-width="2"/>
+            <ellipse cx="50" cy="48" rx="20" ry="22" fill="#fde047" fill-opacity="0.3"/>
+            <!-- Beret hat -->
+            <path d="M25,36 C25,20 65,16 75,28 C80,35 68,44 48,42 C32,41 25,38 25,36 Z" fill="#7e22ce"/>
+            <circle cx="58" cy="20" r="3" fill="#a855f7"/>
+            <ellipse cx="44" cy="48" rx="3" ry="4" fill="#581c87"/>
+            <ellipse cx="58" cy="48" rx="3" ry="4" fill="#581c87"/>
+            <path d="M46,60 Q51,64 56,60" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+            <!-- Artist outfit -->
+            <path d="M20,94 C25,72 38,68 50,68 C62,68 75,72 80,94 Z" fill="#c084fc"/>
+            <circle cx="34" cy="80" r="4" fill="#f43f5e"/>
+            <circle cx="66" cy="84" r="5" fill="#38bdf8"/>
+        </svg>
+                <div>
+                  <h4 class="font-bold text-sm text-heading">學生創作者</h4>
+                  <span class="text-xs text-muted">小涵 • 創作署名</span>
+                </div>
+              </div>
+              <p class="text-xs text-body line-clamp-2">「手繪了三天只借 AI 算光影，就要被蓋一個巨大 AI 印章？誰決定實質修改門檻？」</p>
+            </div>
+
+            <div class="role-card" data-role="editor">
+              <div class="flex items-center gap-3">
+                <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M28,42 C30,22 70,22 72,42 C66,32 50,28 50,28 C50,28 34,32 28,42 Z" fill="#0f172a"/>
+            <!-- Eyes sharp -->
+            <circle cx="43" cy="46" r="3" fill="#1e293b"/>
+            <circle cx="57" cy="46" r="3" fill="#1e293b"/>
+            <path d="M40,41 L47,42" stroke="#1e293b" stroke-width="1.5"/>
+            <path d="M53,42 L60,41" stroke="#1e293b" stroke-width="1.5"/>
+            <path d="M46,58 L54,58" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+            <!-- Press vest with badge -->
+            <path d="M22,94 C26,72 38,68 50,68 C62,68 74,72 78,94 Z" fill="#475569"/>
+            <rect x="30" y="74" width="12" height="15" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+            <text x="36" y="84" font-size="7" fill="#dc2626" font-weight="bold" text-anchor="middle">PRESS</text>
+        </svg>
+                <div>
+                  <h4 class="font-bold text-sm text-heading">校刊主編</h4>
+                  <span class="text-xs text-muted">阿澤 • 查證真實</span>
+                </div>
+              </div>
+              <p class="text-xs text-body line-clamp-2">「照片是歷史底片。如果校刊刊登 AI 假照未標，公信力會在一夜之間瓦解！」</p>
+            </div>
+
+            <div class="role-card" data-role="platform">
+              <div class="flex items-center gap-3">
+                <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#cffafe" stroke="#06b6d4" stroke-width="2"/>
+            <ellipse cx="50" cy="47" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M30,40 C32,24 68,24 70,40 C65,30 50,30 50,30 C50,30 35,30 30,40 Z" fill="#0e7490"/>
+            <!-- Headset -->
+            <path d="M28,48 C27,32 73,32 72,48" fill="none" stroke="#0891b2" stroke-width="3.5"/>
+            <rect x="25" y="44" width="6" height="12" rx="3" fill="#0e7490"/>
+            <rect x="69" y="44" width="6" height="12" rx="3" fill="#0e7490"/>
+            <path d="M28,52 Q35,66 46,64" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="47" cy="64" r="3" fill="#0e7490"/>
+            <path d="M45,58 Q50,62 55,58" fill="none" stroke="#0e7490" stroke-width="2"/>
+            <path d="M22,94 C26,72 38,68 50,68 C62,68 74,72 78,94 Z" fill="#0891b2"/>
+        </svg>
+                <div>
+                  <h4 class="font-bold text-sm text-heading">平台工程師</h4>
+                  <span class="text-xs text-muted">Leo • 成本與可行性</span>
+                </div>
+              </div>
+              <p class="text-xs text-body line-clamp-2">「伺服器審查每張圖成本極高，而且手機截圖後 C2PA 憑證就掉了，技術有極限。」</p>
+            </div>
+
+            <div class="role-card" data-role="victim">
+              <div class="flex items-center gap-3">
+                <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M28,45 C28,26 72,26 72,45 C65,32 50,30 50,30 C50,30 35,32 28,45 Z" fill="#881337"/>
+            <ellipse cx="43" cy="46" rx="3" ry="4" fill="#881337"/>
+            <ellipse cx="57" cy="46" rx="3" ry="4" fill="#881337"/>
+            <!-- Worried mouth & eyebrow -->
+            <path d="M40,40 L46,43" stroke="#881337" stroke-width="1.5"/>
+            <path d="M60,40 L54,43" stroke="#881337" stroke-width="1.5"/>
+            <path d="M46,60 Q50,56 54,60" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Shield badge -->
+            <path d="M22,94 C26,72 38,68 50,68 C62,68 74,72 78,94 Z" fill="#e11d48"/>
+            <path d="M50,75 L56,79 L54,88 L50,91 L46,88 L44,79 Z" fill="#ffffff" stroke="#9f1239" stroke-width="1"/>
+        </svg>
+                <div>
+                  <h4 class="font-bold text-sm text-heading">遭仿冒同學</h4>
+                  <span class="text-xs text-muted">彤彤 • 人格權益</span>
+                </div>
+              </div>
+              <p class="text-xs text-body line-clamp-2">「我的臉被移花接木做迷因霸凌，即使標示了傷害也已造成，必須即時下架與懲處！」</p>
+            </div>
+          </div>
+
+          <!-- Dynamic Speech Display -->
+          <div class="speech-bubble mb-6 bg-slate-50 dark:bg-slate-800/80 border-2 border-primary/30">
+            <div class="flex items-center justify-between mb-2">
+              <h4 id="role-detail-name" class="font-bold text-base text-primary">高中學生（小宇）</h4>
+              <span id="role-detail-concern" class="text-xs text-muted">主要關切：合理協助、成績公平</span>
+            </div>
+            <p id="role-detail-quote" class="text-body text-sm mb-3">
+              「我只是用 AI 幫忙檢查英文作文文法，或在找小論文研究架構時請它腦力激盪。如果連改一個錯字都要填繁瑣的申報表，我只會覺得恐懼並乾脆放棄使用...但我也反對同學全篇用 AI 生成卻拿到高分！」
+            </p>
+            <div id="role-detail-question" class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">
+              必問問題：潤飾一句話也需要標示嗎？如何區分『思考主體』與『工具輔助』？
+            </div>
+            <div id="role-detail-proposal" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              立場偏好：支持【方案 B：風險分級標示】—— 核心論述禁止全篇生成，語言潤飾自述，作業附上使用歷程。
+            </div>
+          </div>
+
+          <!-- Interactive Trade-off Balance Scale -->
+          <div class="card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700">
+            <h3 class="font-bold text-base text-heading mb-1 text-center">⚖️ 公共政策權衡天平 (Trade-off Analyzer)</h3>
+            <p class="text-xs text-muted text-center mb-4">拖曳調整四大面向的優先權重，觀察天平如何傾斜：</p>
+
+            <svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Center pillar -->
+            <rect x="155" y="40" width="10" height="130" rx="3" fill="#64748b"/>
+            <path d="M140,170 L180,170 L190,185 L130,185 Z" fill="#334155"/>
+            <circle cx="160" cy="40" r="10" fill="#f59e0b"/>
+            <!-- Beam -->
+            <g id="scale-beam" transform="rotate(-4 160 40)">
+                <rect x="40" y="37" width="240" height="6" rx="3" fill="#475569"/>
+                <!-- Left pan: Transparency & Fairness -->
+                <line x1="60" y1="40" x2="40" y2="100" stroke="#94a3b8" stroke-width="2"/>
+                <line x1="60" y1="40" x2="80" y2="100" stroke="#94a3b8" stroke-width="2"/>
+                <path d="M30,100 Q60,120 90,100 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+                <text x="60" y="93" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">透明與公平</text>
+                <!-- Right pan: Freedom & Cost -->
+                <line x1="260" y1="40" x2="240" y2="100" stroke="#94a3b8" stroke-width="2"/>
+                <line x1="260" y1="40" x2="280" y2="100" stroke="#94a3b8" stroke-width="2"/>
+                <path d="M230,100 Q260,120 290,100 Z" fill="#f43f5e" stroke="#e11d48" stroke-width="2"/>
+                <text x="260" y="93" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">自由與成本</text>
+            </g>
+        </svg>
+
+            <div class="grid-2 gap-4 mt-4 text-xs">
+              <div>
+                <label class="flex justify-between font-bold mb-1">
+                  <span>ℹ️ 資訊透明度 (Transparency)</span>
+                  <span id="val-transparency">7</span>
+                </label>
+                <input id="balance-transparency" type="range" min="1" max="10" value="7" class="w-full">
+              </div>
+
+              <div>
+                <label class="flex justify-between font-bold mb-1">
+                  <span>🎨 創作自由度 (Creative Freedom)</span>
+                  <span id="val-freedom">6</span>
+                </label>
+                <input id="balance-freedom" type="range" min="1" max="10" value="6" class="w-full">
+              </div>
+
+              <div>
+                <label class="flex justify-between font-bold mb-1">
+                  <span>🎓 校園公平性 (Campus Fairness)</span>
+                  <span id="val-fairness">8</span>
+                </label>
+                <input id="balance-fairness" type="range" min="1" max="10" value="8" class="w-full">
+              </div>
+
+              <div>
+                <label class="flex justify-between font-bold mb-1">
+                  <span>💰 執行與審查成本 (Compliance Cost)</span>
+                  <span id="val-cost">4</span>
+                </label>
+                <input id="balance-cost" type="range" min="1" max="10" value="4" class="w-full">
+              </div>
+            </div>
+
+            <div id="scale-summary" class="mt-4 p-3 bg-white dark:bg-slate-800 rounded-lg text-xs text-center border border-border-color">
+              <span class="text-emerald-600 font-bold">天平呈現「平衡分級治理」</span>：在核心重大風險處落實標示，其餘留給創作彈性，為最理想的務實解方。
+            </div>
+          </div>
+
+          <div class="form-group mt-4">
+            <label class="form-label">📌 在方案 A（一律標示）、方案 B（分級標示）、方案 C（自願倡議）中，我認為哪一案最理想？理由是什麼？</label>
+            <textarea id="student-role-fav" class="form-control" placeholder="結合上述六大角色關切，說明你最支持的方案及理由..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 5 -->
+      <div class="mission-card" data-mission="5" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 5 / 階段五</span>
+              <h2 class="card-title mt-1">形成主張：CER 政策論證短文結構化工作坊</h2>
+            </div>
+            <div class="text-xs text-muted">Claim (主張) • Evidence (證據) • Reasoning (推理) • Rebuttal (反駁)</div>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Claim -->
+            <div class="p-4 border-2 border-indigo-200 dark:border-indigo-800 rounded-xl bg-card">
+              <label class="form-label text-indigo-700 dark:text-indigo-300">🎯 1. 核心主張 (Claim) 與適用範圍：</label>
+              <textarea id="cer-claim" class="form-control" placeholder="例：我主張高中校園應採取「風險分級標示規範」，在涉及人物肖像生成、正式競賽作業評分時強制標示，其餘純文法潤飾則自主申報..."></textarea>
+            </div>
+
+            <!-- Evidence -->
+            <div class="grid-2 gap-4">
+              <div class="p-4 border-2 border-cyan-200 dark:border-cyan-800 rounded-xl bg-card">
+                <label class="form-label text-cyan-700 dark:text-cyan-300">📖 2-1. 第一項可靠證據 (Evidence 1)：</label>
+                <textarea id="cer-ev1" class="form-control text-xs" placeholder="引用歐盟 AI Act 第50條或台灣法規條文，載明日期與核心內容..."></textarea>
+              </div>
+              <div class="p-4 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl bg-card">
+                <label class="form-label text-emerald-700 dark:text-emerald-300">🔬 2-2. 第二項可靠證據 (Evidence 2)：</label>
+                <textarea id="cer-ev2" class="form-control text-xs" placeholder="引用 C2PA 憑證技術特性或 UNESCO 教育指引，指出技術可行性與界線..."></textarea>
+              </div>
+            </div>
+
+            <!-- Reasoning -->
+            <div class="p-4 border-2 border-amber-200 dark:border-amber-800 rounded-xl bg-card">
+              <label class="form-label text-amber-700 dark:text-amber-300">🧠 3. 推理論證 (Reasoning)：上述證據如何支持你的核心主張？</label>
+              <textarea id="cer-reasoning" class="form-control" placeholder="解釋證據與主張之間的因果鏈：為什麼分級標示能兼顧閱聽人知的權利，同時避免形式主義表單拖垮學生與老師..."></textarea>
+            </div>
+
+            <!-- Rebuttal -->
+            <div class="p-4 border-2 border-rose-200 dark:border-rose-800 rounded-xl bg-card">
+              <label class="form-label text-rose-700 dark:text-rose-300">🛡️ 4. 最強反方觀點與我的回應反駁 (Counterclaim & Rebuttal)：</label>
+              <textarea id="cer-rebuttal" class="form-control" placeholder="指出反方（例如創作者或平台業者）最強烈的抗議是什麼，以及你的規範如何提供例外豁免或申訴機制來化解擔憂..."></textarea>
+            </div>
+
+            <div class="text-right">
+              <button class="btn btn-primary" onclick="App.generateCEREssay()">✨ 生成 CER 政策論證短文預覽</button>
+            </div>
+
+            <div id="cer-preview-box"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 6 -->
+      <div class="mission-card" data-mission="6" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 6 / 階段六</span>
+              <h2 class="card-title mt-1">採取行動：校園 AI 內容標示指引 DIY 與同儕測試</h2>
+            </div>
+            <div class="text-xs text-muted">具體可執行的校園方案規範設計</div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="grid-2 gap-4">
+              <div>
+                <label class="form-label">📌 必標情況與門檻 (Mandatory Threshold)：</label>
+                <textarea id="policy-threshold" class="form-control text-xs" placeholder="明列何種情況必須標示：例如全篇代寫、生成真人聲音影像、參加校外小論文競賽..."></textarea>
+              </div>
+
+              <div>
+                <label class="form-label">📍 標示位置與方式 (Placement & Format)：</label>
+                <textarea id="policy-placement" class="form-control text-xs" placeholder="例如海報右下角數位標章、文稿末端附錄、簡報首頁備註..."></textarea>
+              </div>
+            </div>
+
+            <div class="grid-2 gap-4">
+              <div>
+                <label class="form-label">💬 推薦標示範例句 1 (作業/報告情境)：</label>
+                <input id="policy-ex1" type="text" class="form-control text-sm" value="「本作業之大綱構想與論述為本人原創，英文語法部分經 ChatGPT 潤飾校對。」">
+              </div>
+
+              <div>
+                <label class="form-label">🎨 推薦標示範例句 2 (社團海報/影音情境)：</label>
+                <input id="policy-ex2" type="text" class="form-control text-sm" value="「本海報人物與活動內容為真實拍攝，背景視覺由 Midjourney 輔助生成。」">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">⚖️ 責任歸屬、例外豁免與申訴機制：</label>
+              <textarea id="policy-draft-box" class="form-control" placeholder="若學生被檢舉未標示，由誰審查？如何提出 Prompt 歷程證明清白？誤傷創作者時如何救濟？"></textarea>
+            </div>
+
+            <!-- Instant Badge Generator -->
+            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700">
+              <h4 class="font-bold text-sm mb-3">🏷️ 班級／學校專屬 AI 標示徽章產生器</h4>
+              <div class="flex flex-wrap items-center gap-4">
+                <input id="badge-school-name" type="text" class="form-control text-xs w-40" placeholder="學校或社團名稱" value="卓越高中">
+                <select id="badge-policy-level" class="form-control text-xs w-48">
+                  <option value="B" selected>方案 B: 分級透明標章</option>
+                  <option value="A">方案 A: 嚴格強制標章</option>
+                  <option value="C">方案 C: 自律倡議標章</option>
+                </select>
+                <button class="btn btn-secondary text-xs" onclick="App.generatePolicyBadge()">產生標章預覽</button>
+              </div>
+              <div id="badge-preview-area" class="mt-4 flex items-center justify-center p-3 bg-white dark:bg-slate-900 rounded-lg border border-dashed border-border-color">
+                <span class="text-xs text-muted">點擊上方按鈕產生認證標章 SVG</span>
+              </div>
+            </div>
+
+            <!-- Peer Usability Test -->
+            <div class="form-group">
+              <label class="form-label">🧑‍🎓 同儕易讀性測試 (Peer Usability Testing)：</label>
+              <p class="text-xs text-muted mb-2">邀請一位同學閱讀你的規範條文，測試他是否能清楚理解何時該標、何時免標。</p>
+              <button class="btn btn-secondary text-xs mb-3" onclick="App.runPeerTest()">模擬同儕測試評估 🤖</button>
+              <div id="peer-test-result" style="display:none;" class="mb-3"></div>
+              <textarea id="peer-test-notes" class="form-control" placeholder="記錄同學反饋：看懂了哪一條？哪一句容易誤解？我據此修改了什麼..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION 7 -->
+      <div class="mission-card" data-mission="7" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <span class="badge badge-primary">任務 7 / 階段七</span>
+              <h2 class="card-title mt-1">反思修正：立場對比、Exit Ticket 與 AI 使用紀錄</h2>
+            </div>
+            <div class="text-xs text-muted">課後立場檢核與學習產出總結</div>
+          </div>
+
+          <div class="space-y-5">
+            <!-- Post Stance -->
+            <div class="form-group">
+              <label class="form-label">⚖️ 我的課後立場 (Post-Learning Stance)：</label>
+              <div id="post-stance-pills" class="radio-pill-group">
+                <div class="radio-pill" data-val="全部標示">🔴 全部標示</div>
+                <div class="radio-pill" data-val="特定情況標示">🟡 特定情況標示</div>
+                <div class="radio-pill" data-val="不要求標示">🟢 不要求標示</div>
+                <div class="radio-pill" data-val="尚不確定">⚪ 尚不確定</div>
+              </div>
+              <input type="hidden" id="student-post-stance" value="">
+            </div>
+
+            <!-- Stance Comparison Card -->
+            <div id="stance-compare-chart" class="card p-3 bg-slate-50 dark:bg-slate-800">
+              <div class="text-center text-xs text-muted">請在上方點選你的課後立場，此處將自動呈現前後立場變遷對比</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🔍 影響我立場最關鍵的新證據，以及仍不確定之處：</label>
+              <textarea id="student-post-evidence" class="form-control" placeholder="例如查核了歐盟第50條的例外條款、或聽取創作者與平台工程師的技術限制後..."></textarea>
+            </div>
+
+            <!-- 30-word Exit Ticket -->
+            <div class="p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-xl border-2 border-indigo-300 dark:border-indigo-700">
+              <div class="flex items-center justify-between mb-1">
+                <label class="form-label text-indigo-900 dark:text-indigo-200">🎫 課堂離開憑證 (Exit Ticket) — 限制 30 字以內：</label>
+                <span id="exit-ticket-counter" class="text-xs font-bold text-muted">0 / 30 字</span>
+              </div>
+              <p class="text-xs text-indigo-700 dark:text-indigo-300 mb-2">題目：用一句話說明，你的標示規則<strong>最能保護誰</strong>，又可能<strong>為誰帶來負擔</strong>？</p>
+              <input id="exit-ticket-input" type="text" class="form-control font-semibold" placeholder="例：保護閱聽人免於深偽受騙，但也增加創作者繁瑣的標記責任。" maxlength="40">
+            </div>
+
+            <!-- AI Usage Log Table -->
+            <div class="card p-4 border border-border-color">
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="font-bold text-sm text-heading">🤖 我的 AI 使用透明歷程申報欄 (符合教育部指引)</h4>
+                <span class="badge badge-success">自主誠信揭露</span>
+              </div>
+              <div class="grid-2 gap-3 text-xs mb-3">
+                <div>
+                  <label class="font-bold block mb-1">使用工具與日期：</label>
+                  <input id="ai-tool" type="text" class="form-control text-xs" value="ChatGPT / Claude (2026/09/24)">
+                </div>
+                <div>
+                  <label class="font-bold block mb-1">輸入之問題或 Prompt：</label>
+                  <input id="ai-prompt" type="text" class="form-control text-xs" placeholder="例：請幫我整理歐盟 AI Act 第50條對深偽的例外規定">
+                </div>
+              </div>
+              <div class="grid-2 gap-3 text-xs">
+                <div>
+                  <label class="font-bold block mb-1">AI 提供之核心主張：</label>
+                  <textarea id="ai-output" class="form-control text-xs" placeholder="AI 摘要的主要觀點..."></textarea>
+                </div>
+                <div>
+                  <label class="font-bold block mb-1">親自核對的原始資料與採用/捨棄理由：</label>
+                  <textarea id="ai-verify" class="form-control text-xs" placeholder="查閱歐盟官方條文原文確認..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stepper Footer Action Buttons -->
+      <div class="flex items-center justify-between mt-6">
+        <button id="mission-prev-btn" class="btn btn-secondary" onclick="App.prevMission()" style="visibility: hidden;" data-i18n="btn_prev">⬅ 返回上一階段</button>
+        <button id="mission-next-btn" class="btn btn-primary" onclick="App.nextMission()" data-i18n="btn_next">前往下一階段 ➔</button>
+      </div>
+    </div>
+    
+
+    <div id="view-teacher" class="view-panel" style="display: none;">
+      <!-- Teacher Header -->
+      <div class="card bg-gradient-to-r from-emerald-50/60 to-indigo-50/60 dark:from-emerald-950/30 dark:to-indigo-950/30 p-5 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span class="badge badge-success">教學歷程中樞</span>
+            <h2 class="card-title text-xl mt-1">高中跨域公共議題探究 • 4 節課 (200 分鐘) 教學歷程</h2>
+            <p class="text-xs text-muted">適用：高一至高三 公民／資訊科技／國文跨域 • 每組 4–5 人</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-muted">查核效期：2026 年 9 月現行規準</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classroom Countdown Timer Widget -->
+      <div class="card p-5 mb-6 bg-slate-900 text-white">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-sky-400">⏱️ 課堂活動動態計時器 (Classroom Interactive Timer)</h3>
+            <p class="text-xs text-slate-400">控制階段討論、公聽會陳述與 Exit Ticket 書寫節奏</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="timer-preset-btn segmented-btn text-xs" data-mins="15">15 分鐘</button>
+            <button class="timer-preset-btn segmented-btn text-xs" data-mins="25">25 分鐘</button>
+            <button class="timer-preset-btn segmented-btn text-xs" data-mins="35">35 分鐘</button>
+            <button class="timer-preset-btn segmented-btn text-xs" data-mins="50">50 分鐘</button>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center my-4">
+          <div id="timer-display" class="timer-display">15:00</div>
+          <div class="flex gap-3">
+            <button id="timer-toggle-btn" class="btn btn-primary text-sm px-6">開始計時 ▶</button>
+            <button id="timer-reset-btn" class="btn btn-secondary text-sm px-4">重設 ↺</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Lesson Complete Timeline -->
+      <div class="card mb-6">
+        <div class="card-header">
+          <h3 class="card-title text-lg">📅 四節課教學流程地圖 (4 Lessons Curriculum Map)</h3>
+          <span class="badge badge-primary">每節 50 分鐘</span>
+        </div>
+
+        <div class="space-y-4 text-xs">
+          <!-- Lesson 1 -->
+          <div class="p-4 border border-border-color rounded-xl bg-card">
+            <div class="flex items-center justify-between font-bold text-sm text-indigo-600 mb-2">
+              <span>第 1 節：情境觀察與問題意識建構</span>
+              <span class="badge badge-primary">產出：觀察紀錄、初探立場、研究問題</span>
+            </div>
+            <div class="grid-3 gap-3">
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>0–15 分：</strong> 出示兩版海報示例，強調虛構情境；引導學生獨立判斷差異，記錄第一立場與信心程度。
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>15–35 分：</strong> 示範把模糊問句縮成可查問題，界定「生成」與「輔助」差異，列出假設與需要的證據。
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>35–50 分：</strong> 示範來源查核四問（誰說、何時、適用何處、不能證明什麼），完成第一張來源查核卡。
+              </div>
+            </div>
+          </div>
+
+          <!-- Lesson 2 -->
+          <div class="p-4 border border-border-color rounded-xl bg-card">
+            <div class="flex items-center justify-between font-bold text-sm text-cyan-600 mb-2">
+              <span>第 2 節：法規、技術證據查驗與真偽界線</span>
+              <span class="badge badge-cyan">產出：三張證據卡、交叉互評</span>
+            </div>
+            <div class="grid-2 gap-3">
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>0–35 分：</strong> 分派台灣法規、歐盟 AI Act、C2PA 憑證技術、UNESCO 四組材料；巡迴追問條文適用範圍與限制。
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>35–50 分：</strong> 主持組間交叉檢查，嚴正提醒「沒有數位憑證不等於偽造」，互評證據可信度與推論缺口。
+              </div>
+            </div>
+          </div>
+
+          <!-- Lesson 3 -->
+          <div class="p-4 border border-border-color rounded-xl bg-card">
+            <div class="flex items-center justify-between font-bold text-sm text-amber-600 mb-2">
+              <span>第 3 節：公聽會模擬與 CER 政策論證</span>
+              <span class="badge badge-warning">產出：立場矩陣、CER 政策草稿</span>
+            </div>
+            <div class="grid-2 gap-3">
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>0–25 分：</strong> 分配 6 大角色（學生、教師、創作者、記者、平台、受害人）主持模擬公聽會；每組 60 秒陳述，30 秒反駁。
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>25–50 分：</strong> 比較三種方案的收益、成本與例外機制，運用 CER 鷹架架構完成政策草稿與論證短文。
+              </div>
+            </div>
+          </div>
+
+          <!-- Lesson 4 -->
+          <div class="p-4 border border-border-color rounded-xl bg-card">
+            <div class="flex items-center justify-between font-bold text-sm text-emerald-600 mb-2">
+              <span>第 4 節：校園標示指引、同儕測試與反思修訂</span>
+              <span class="badge badge-success">產出：標示指引、修訂說明、Exit Ticket</span>
+            </div>
+            <div class="grid-2 gap-3">
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>0–30 分：</strong> 提供規則模板，檢查標示位置、責任歸屬與申訴管道；製作校園 AI 指引並由同儕進行易讀性盲測。
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <strong>30–50 分：</strong> 收取課前課後立場比對、依回饋修訂之政策條文，指導填寫 30 字 Exit Ticket 與評量總結。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher Cheatsheet: 4 Boundaries -->
+      <div class="card mb-6">
+        <div class="card-header">
+          <h3 class="card-title text-lg">💡 教師備課錦囊：四大資料「判讀界線」追問重點</h3>
+          <span class="badge badge-danger">防範過度推論</span>
+        </div>
+        <div class="grid-2 gap-4 text-xs">
+          <div class="p-3 border-l-4 border-indigo-500 bg-slate-50 dark:bg-slate-800 rounded-r-lg">
+            <strong class="text-indigo-600 text-sm block mb-1">1. 台灣《詐欺防制條例》網路廣告揭露</strong>
+            <p><strong>界線提醒：</strong> 這是特定網路廣告情境（針對深偽名人詐騙）；絕對<strong>不可擴大推論</strong>成所有生成文字或所有高中生作業均依法強制標示。</p>
+          </div>
+          <div class="p-3 border-l-4 border-cyan-500 bg-slate-50 dark:bg-slate-800 rounded-r-lg">
+            <strong class="text-cyan-600 text-sm block mb-1">2. 歐盟《AI Act 第50條》透明義務</strong>
+            <p><strong>界線提醒：</strong> 必須指導學生分辨「系統提供者的機器標記」與「部署者對人的揭露」，並注意藝術諷刺與授權例外，不可一刀切。</p>
+          </div>
+          <div class="p-3 border-l-4 border-emerald-500 bg-slate-50 dark:bg-slate-800 rounded-r-lg">
+            <strong class="text-emerald-600 text-sm block mb-1">3. C2PA《Content Credentials》來源憑證</strong>
+            <p><strong>界線提醒：</strong> 來源憑證只提供「可驗證的來源簽章與編修歷程」，<strong>不保證內容陳述為真</strong>；缺少憑證更不能直接扣上假造帽子。</p>
+          </div>
+          <div class="p-3 border-l-4 border-amber-500 bg-slate-50 dark:bg-slate-800 rounded-r-lg">
+            <strong class="text-amber-600 text-sm block mb-1">4. UNESCO《生成式 AI 教育與研究指引》</strong>
+            <p><strong>界線提醒：</strong> 校園規範宜保留人類判斷與教學彈性，重在引導學生善用工具進行高層次學習，<strong>切勿把 AI 使用與學術不誠實劃等號</strong>。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 20-Point Rubric Interactive Calculator -->
+      <div class="card mb-6">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title text-lg">📊 四級總結性評量規準即時打分表 (20 分滿分)</h3>
+            <p class="text-xs text-muted">點選表格儲存格即時計算總分與評語回饋</p>
+          </div>
+          <div class="text-right">
+            <div id="rubric-total-score" class="text-2xl font-black text-primary">20 / 20 分</div>
+            <div id="rubric-grade-badge" class="badge badge-success">等級：卓越 (Level 4)</div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">評量面向</th>
+                <th style="width: 21.25%;">4 分 (卓越)</th>
+                <th style="width: 21.25%;">3 分 (良好)</th>
+                <th style="width: 21.25%;">2 分 (基礎)</th>
+                <th style="width: 21.25%;">1 分 (待加強)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 1. Evidence Check -->
+              <tr class="rubric-row-evidence">
+                <td class="font-bold">1. 證據查核</td>
+                <td class="rubric-cell selected" data-score="4" onclick="App.setRubricScore('evidence', 4)">
+                  兩項以上原始一手來源，能明確辨明適用範圍與「不能證明什麼」。
+                </td>
+                <td class="rubric-cell" data-score="3" onclick="App.setRubricScore('evidence', 3)">
+                  兩項可靠來源，完成基本查核與重點摘錄。
+                </td>
+                <td class="rubric-cell" data-score="2" onclick="App.setRubricScore('evidence', 2)">
+                  來源或適用範圍不完整，僅依賴二次摘要。
+                </td>
+                <td class="rubric-cell" data-score="1" onclick="App.setRubricScore('evidence', 1)">
+                  缺乏可靠來源，或嚴重誤解條文範圍。
+                </td>
+              </tr>
+
+              <!-- 2. Argumentation Reasoning -->
+              <tr class="rubric-row-reasoning">
+                <td class="font-bold">2. 論證推理</td>
+                <td class="rubric-cell selected" data-score="4" onclick="App.setRubricScore('reasoning', 4)">
+                  主張、證據與推理論證緊密連結，邏輯因果嚴謹無矛盾。
+                </td>
+                <td class="rubric-cell" data-score="3" onclick="App.setRubricScore('reasoning', 3)">
+                  論證大致一致，能說明證據與結論之關聯。
+                </td>
+                <td class="rubric-cell" data-score="2" onclick="App.setRubricScore('reasoning', 2)">
+                  證據與結論連結薄弱，推論存在跳躍。
+                </td>
+                <td class="rubric-cell" data-score="1" onclick="App.setRubricScore('reasoning', 1)">
+                  只有立場表態，缺乏邏輯推理與論據。
+                </td>
+              </tr>
+
+              <!-- 3. Perspectives -->
+              <tr class="rubric-row-perspectives">
+                <td class="font-bold">3. 多元觀點</td>
+                <td class="rubric-cell selected" data-score="4" onclick="App.setRubricScore('perspectives', 4)">
+                  準確換位理解並強烈回應最強反方觀點，兼顧各角色權益。
+                </td>
+                <td class="rubric-cell" data-score="3" onclick="App.setRubricScore('perspectives', 3)">
+                  說明反方論點並嘗試提出具體回應。
+                </td>
+                <td class="rubric-cell" data-score="2" onclick="App.setRubricScore('perspectives', 2)">
+                  僅列出反方立場，缺乏深層分析與回應。
+                </td>
+                <td class="rubric-cell" data-score="1" onclick="App.setRubricScore('perspectives', 1)">
+                  忽略其他利害關係人，僅從單一視角論述。
+                </td>
+              </tr>
+
+              <!-- 4. Feasibility -->
+              <tr class="rubric-row-feasibility">
+                <td class="font-bold">4. 方案可行性</td>
+                <td class="rubric-cell selected" data-score="4" onclick="App.setRubricScore('feasibility', 4)">
+                  明訂門檻、責任歸屬、標示位置、例外豁免與申訴機制。
+                </td>
+                <td class="rubric-cell" data-score="3" onclick="App.setRubricScore('feasibility', 3)">
+                  多數要件具體，指引文字清晰可遵行。
+                </td>
+                <td class="rubric-cell" data-score="2" onclick="App.setRubricScore('feasibility', 2)">
+                  規則過於模糊或執行成本過高，難以落實。
+                </td>
+                <td class="rubric-cell" data-score="1" onclick="App.setRubricScore('feasibility', 1)">
+                  僅有抽象口號，缺乏具體操作條款。
+                </td>
+              </tr>
+
+              <!-- 5. Reflection -->
+              <tr class="rubric-row-reflection">
+                <td class="font-bold">5. 反思修正</td>
+                <td class="rubric-cell selected" data-score="4" onclick="App.setRubricScore('reflection', 4)">
+                  依據新證據與同儕回饋具體修訂規則，Exit Ticket 精準深刻。
+                </td>
+                <td class="rubric-cell" data-score="3" onclick="App.setRubricScore('reflection', 3)">
+                  能說明前後立場差異，並進行部分條文修訂。
+                </td>
+                <td class="rubric-cell" data-score="2" onclick="App.setRubricScore('reflection', 2)">
+                  反思內容籠統，未具體說明修訂依據。
+                </td>
+                <td class="rubric-cell" data-score="1" onclick="App.setRubricScore('reflection', 1)">
+                  未進行前後立場反思，缺漏修訂說明。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-xs">
+          <strong class="text-heading">💡 教師評語建議：</strong>
+          <span id="rubric-feedback-text" class="text-body ml-2">優質表現：證據查核嚴謹，能明確辨識規範界線與不能證明之處；CER 論述嚴密，且兼顧多元角色需求與校園方案之可行性。</span>
+        </div>
+      </div>
+
+      <!-- Teacher 7-Item Checklist -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title text-lg">✅ 教師作品檢核清單 (7 項檢核點)</h3>
+          <span class="badge badge-success">點擊即時勾選</span>
+        </div>
+        <div class="space-y-2 text-xs">
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>1. 包含課前及課後立場，能看出論證思考歷程轉變</span>
+          </label>
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>2. 至少兩項原始一手來源可明確追溯查核</span>
+          </label>
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>3. 清楚區分客觀事實、推論假設與價值判斷</span>
+          </label>
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>4. 涵蓋多元利害關係人，並針對最強反方進行實質回應</span>
+          </label>
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>5. 政策指引寫明適用範圍、標示門檻與責任歸屬</span>
+          </label>
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>6. 具備同儕測試反饋與具體修訂理由</span>
+          </label>
+          <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded cursor-pointer">
+            <input type="checkbox" checked class="w-4 h-4 text-primary">
+            <span>7. 完成 AI 使用歷程誠信申報與個人個資安全檢查</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="view-arena" class="view-panel" style="display: none;">
+      <!-- Public Hearing Hero -->
+      <div class="card p-6 bg-gradient-to-r from-purple-900 to-indigo-950 text-white mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span class="badge badge-warning">校園公聽會模擬大廳</span>
+            <h2 class="text-2xl font-black mt-2 text-white">AI 內容標示規範 • 六方圓桌聽證會</h2>
+            <p class="text-xs text-purple-200 mt-1">每方 60 秒開場陳述、30 秒交叉質詢 • 尋求多方最大共識解</p>
+          </div>
+          <button class="btn btn-success text-xs" onclick="sound.playSuccess(); alert('公聽會程序啟動：請由主席（教師）依序點名各角色發言。')">
+            🔔 敲槌開議
+          </button>
+        </div>
+      </div>
+
+      <!-- Public Hearing Stage Grid -->
+      <div class="grid-3 gap-4 mb-6">
+        <!-- Student -->
+        <div class="card p-4 border-2 border-blue-400 dark:border-blue-700">
+          <div class="flex items-center gap-3 mb-3">
+            <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+            <!-- Head & hair -->
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M30,42 C30,24 70,24 70,42 C65,30 55,28 50,30 C45,28 35,30 30,42 Z" fill="#1e293b"/>
+            <!-- Cap or glasses -->
+            <circle cx="43" cy="46" r="5" fill="none" stroke="#2563eb" stroke-width="2"/>
+            <circle cx="57" cy="46" r="5" fill="none" stroke="#2563eb" stroke-width="2"/>
+            <path d="M48,46 L52,46" stroke="#2563eb" stroke-width="2"/>
+            <!-- Smile -->
+            <path d="M45,58 Q50,63 55,58" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Hoodie -->
+            <path d="M22,94 C25,72 38,68 50,68 C62,68 75,72 78,94 Z" fill="#3b82f6"/>
+            <path d="M42,68 L50,82 L58,68" stroke="#1d4ed8" stroke-width="2" fill="none"/>
+        </svg>
+            <div>
+              <h4 class="font-bold text-sm text-heading">1. 學生代表（小宇）</h4>
+              <span class="badge badge-primary text-[10px]">受評量者視角</span>
+            </div>
+          </div>
+          <div class="text-xs space-y-2 text-body">
+            <p><strong>陳述重點：</strong> 反對將工具使用一律打成作弊！正常排版與潤飾如果都要登記，只會引發校園恐慌與形式主義。</p>
+            <p class="text-indigo-600 font-semibold">提案條款：明訂「思考主體在人」時免標示，僅在全篇委託生成時須主動揭露。</p>
+          </div>
+        </div>
+
+        <!-- Teacher -->
+        <div class="card p-4 border-2 border-amber-400 dark:border-amber-700">
+          <div class="flex items-center gap-3 mb-3">
+            <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#ffedd5"/>
+            <!-- Hair neat -->
+            <path d="M28,45 C28,26 72,26 72,45 C68,32 50,30 50,30 C50,30 32,32 28,45 Z" fill="#475569"/>
+            <!-- Glasses -->
+            <rect x="36" y="42" width="12" height="9" rx="2" fill="none" stroke="#475569" stroke-width="2"/>
+            <rect x="52" y="42" width="12" height="9" rx="2" fill="none" stroke="#475569" stroke-width="2"/>
+            <path d="M48,46 L52,46" stroke="#475569" stroke-width="2"/>
+            <path d="M45,58 Q50,62 55,58" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round"/>
+            <!-- Formal suit -->
+            <path d="M20,94 C24,70 38,66 50,66 C62,66 76,70 80,94 Z" fill="#0f766e"/>
+            <polygon points="46,66 54,66 52,78 48,78" fill="#f59e0b"/>
+        </svg>
+            <div>
+              <h4 class="font-bold text-sm text-heading">2. 教師代表（陳老師）</h4>
+              <span class="badge badge-warning text-[10px]">教學引導者視角</span>
+            </div>
+          </div>
+          <div class="text-xs space-y-2 text-body">
+            <p><strong>陳述重點：</strong> 評量的核心在於原創論證！希望標示能夠呈現學生的「批判思維歷程」，而非無意義的防弊表單。</p>
+            <p class="text-amber-600 font-semibold">提案條款：要求重大作業附上「AI 使用歷程摘要」，供教師診斷學習盲點。</p>
+          </div>
+        </div>
+
+        <!-- Creator -->
+        <div class="card p-4 border-2 border-purple-400 dark:border-purple-700">
+          <div class="flex items-center gap-3 mb-3">
+            <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#f3e8ff" stroke="#a855f7" stroke-width="2"/>
+            <ellipse cx="50" cy="48" rx="20" ry="22" fill="#fde047" fill-opacity="0.3"/>
+            <!-- Beret hat -->
+            <path d="M25,36 C25,20 65,16 75,28 C80,35 68,44 48,42 C32,41 25,38 25,36 Z" fill="#7e22ce"/>
+            <circle cx="58" cy="20" r="3" fill="#a855f7"/>
+            <ellipse cx="44" cy="48" rx="3" ry="4" fill="#581c87"/>
+            <ellipse cx="58" cy="48" rx="3" ry="4" fill="#581c87"/>
+            <path d="M46,60 Q51,64 56,60" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+            <!-- Artist outfit -->
+            <path d="M20,94 C25,72 38,68 50,68 C62,68 75,72 80,94 Z" fill="#c084fc"/>
+            <circle cx="34" cy="80" r="4" fill="#f43f5e"/>
+            <circle cx="66" cy="84" r="5" fill="#38bdf8"/>
+        </svg>
+            <div>
+              <h4 class="font-bold text-sm text-heading">3. 創作者代表（小涵）</h4>
+              <span class="badge badge-primary text-[10px]">藝術自由視角</span>
+            </div>
+          </div>
+          <div class="text-xs space-y-2 text-body">
+            <p><strong>陳述重點：</strong> 誰有權力定義「實質修改」？如果在海報上強加巨大標記，會破壞整體藝術美感並抹煞人類心血。</p>
+            <p class="text-purple-600 font-semibold">提案條款：允許以數位憑證 (C2PA) 取代顯性巨大浮水印，保留創作自主性。</p>
+          </div>
+        </div>
+
+        <!-- Editor -->
+        <div class="card p-4 border-2 border-indigo-400 dark:border-indigo-700">
+          <div class="flex items-center gap-3 mb-3">
+            <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M28,42 C30,22 70,22 72,42 C66,32 50,28 50,28 C50,28 34,32 28,42 Z" fill="#0f172a"/>
+            <!-- Eyes sharp -->
+            <circle cx="43" cy="46" r="3" fill="#1e293b"/>
+            <circle cx="57" cy="46" r="3" fill="#1e293b"/>
+            <path d="M40,41 L47,42" stroke="#1e293b" stroke-width="1.5"/>
+            <path d="M53,42 L60,41" stroke="#1e293b" stroke-width="1.5"/>
+            <path d="M46,58 L54,58" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+            <!-- Press vest with badge -->
+            <path d="M22,94 C26,72 38,68 50,68 C62,68 74,72 78,94 Z" fill="#475569"/>
+            <rect x="30" y="74" width="12" height="15" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+            <text x="36" y="84" font-size="7" fill="#dc2626" font-weight="bold" text-anchor="middle">PRESS</text>
+        </svg>
+            <div>
+              <h4 class="font-bold text-sm text-heading">4. 新聞編輯（阿澤）</h4>
+              <span class="badge badge-cyan text-[10px]">資訊公信力視角</span>
+            </div>
+          </div>
+          <div class="text-xs space-y-2 text-body">
+            <p><strong>陳述重點：</strong> 公信力是校刊的生命！在新聞紀實情境中，任何非真實拍攝的圖片必須 100% 顯著標明，絕無妥協空間。</p>
+            <p class="text-indigo-600 font-semibold">提案條款：新聞採訪與時事評論類作品，凡涉及合成影像一律顯著加註免責說明。</p>
+          </div>
+        </div>
+
+        <!-- Platform -->
+        <div class="card p-4 border-2 border-cyan-400 dark:border-cyan-700">
+          <div class="flex items-center gap-3 mb-3">
+            <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#cffafe" stroke="#06b6d4" stroke-width="2"/>
+            <ellipse cx="50" cy="47" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M30,40 C32,24 68,24 70,40 C65,30 50,30 50,30 C50,30 35,30 30,40 Z" fill="#0e7490"/>
+            <!-- Headset -->
+            <path d="M28,48 C27,32 73,32 72,48" fill="none" stroke="#0891b2" stroke-width="3.5"/>
+            <rect x="25" y="44" width="6" height="12" rx="3" fill="#0e7490"/>
+            <rect x="69" y="44" width="6" height="12" rx="3" fill="#0e7490"/>
+            <path d="M28,52 Q35,66 46,64" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="47" cy="64" r="3" fill="#0e7490"/>
+            <path d="M45,58 Q50,62 55,58" fill="none" stroke="#0e7490" stroke-width="2"/>
+            <path d="M22,94 C26,72 38,68 50,68 C62,68 74,72 78,94 Z" fill="#0891b2"/>
+        </svg>
+            <div>
+              <h4 class="font-bold text-sm text-heading">5. 平台維運（Leo）</h4>
+              <span class="badge badge-cyan text-[10px]">技術可行性視角</span>
+            </div>
+          </div>
+          <div class="text-xs space-y-2 text-body">
+            <p><strong>陳述重點：</strong> 學生常截圖轉發，C2PA 中繼資料隨之丟失。平台若強制作全站 AI 模型即時偵測，運算伺服器根本不堪負荷。</p>
+            <p class="text-cyan-600 font-semibold">提案條款：採「用戶自主標示 + 事後檢舉複查機制」，不採全站事前強制掃描。</p>
+          </div>
+        </div>
+
+        <!-- Victim -->
+        <div class="card p-4 border-2 border-rose-400 dark:border-rose-700">
+          <div class="flex items-center gap-3 mb-3">
+            <svg viewBox="0 0 100 100" class="w-14 h-14 rounded-full" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
+            <ellipse cx="50" cy="46" rx="20" ry="22" fill="#fed7aa"/>
+            <path d="M28,45 C28,26 72,26 72,45 C65,32 50,30 50,30 C50,30 35,32 28,45 Z" fill="#881337"/>
+            <ellipse cx="43" cy="46" rx="3" ry="4" fill="#881337"/>
+            <ellipse cx="57" cy="46" rx="3" ry="4" fill="#881337"/>
+            <!-- Worried mouth & eyebrow -->
+            <path d="M40,40 L46,43" stroke="#881337" stroke-width="1.5"/>
+            <path d="M60,40 L54,43" stroke="#881337" stroke-width="1.5"/>
+            <path d="M46,60 Q50,56 54,60" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Shield badge -->
+            <path d="M22,94 C26,72 38,68 50,68 C62,68 74,72 78,94 Z" fill="#e11d48"/>
+            <path d="M50,75 L56,79 L54,88 L50,91 L46,88 L44,79 Z" fill="#ffffff" stroke="#9f1239" stroke-width="1"/>
+        </svg>
+            <div>
+              <h4 class="font-bold text-sm text-heading">6. 被冒名代表（彤彤）</h4>
+              <span class="badge badge-danger text-[10px]">人格權益保障視角</span>
+            </div>
+          </div>
+          <div class="text-xs space-y-2 text-body">
+            <p><strong>陳述重點：</strong> 未經同意合成人像與仿聲已構成校園霸凌！深偽影像只要流傳一次就造成終生心理創傷，標示不能代替下架。</p>
+            <p class="text-rose-600 font-semibold">提案條款：未經授權之個人肖像與聲音仿冒，列為重大違紀，一律強制下架並啟動輔導機制。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voting on 3 Proposals -->
+      <div class="card p-5 bg-slate-50 dark:bg-slate-800">
+        <h3 class="font-bold text-base text-heading mb-2">🗳️ 公聽會最終方案即時表決大廳</h3>
+        <p class="text-xs text-muted mb-4">聽取完六大發言後，請以全班或組別為單位進行方案投票：</p>
+        <div class="grid-3 gap-4">
+          <div class="p-4 bg-white dark:bg-slate-900 border border-border-color rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="badge badge-primary mb-2">方案 A</span>
+              <h4 class="font-bold text-sm text-heading">一律全面標示</h4>
+              <p class="text-xs text-muted mt-1">凡有任何 AI 介入皆須標註浮水印與使用清單。</p>
+            </div>
+            <button class="btn btn-secondary text-xs mt-3 w-full" onclick="sound.playSuccess(); alert('已投票支持【方案 A：一律全面標示】')">投方案 A 一票</button>
+          </div>
+
+          <div class="p-4 bg-white dark:bg-slate-900 border-2 border-emerald-500 rounded-xl flex flex-col justify-between shadow-md">
+            <div>
+              <span class="badge badge-success mb-2">方案 B (推薦共識)</span>
+              <h4 class="font-bold text-sm text-heading">風險分級標示</h4>
+              <p class="text-xs text-muted mt-1">真人仿像與競賽評量嚴格標示，藝術與語言潤飾自主說明。</p>
+            </div>
+            <button class="btn btn-success text-xs mt-3 w-full" onclick="sound.playSuccess(); alert('已投票支持【方案 B：風險分級標示】')">投方案 B 一票</button>
+          </div>
+
+          <div class="p-4 bg-white dark:bg-slate-900 border border-border-color rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="badge badge-warning mb-2">方案 C</span>
+              <h4 class="font-bold text-sm text-heading">倡議自願自律</h4>
+              <p class="text-xs text-muted mt-1">不訂強制罰則，完全交由創作者與使用者自律揭露。</p>
+            </div>
+            <button class="btn btn-secondary text-xs mt-3 w-full" onclick="sound.playSuccess(); alert('已投票支持【方案 C：倡議自願自律】')">投方案 C 一票</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="view-portfolio" class="view-panel" style="display: none;">
+      <!-- Action Toolbar -->
+      <div class="card p-4 mb-4 flex flex-wrap items-center justify-between gap-4 no-print bg-gradient-to-r from-indigo-50 to-emerald-50 dark:from-indigo-950/30 dark:to-emerald-950/30">
+        <div>
+          <span class="badge badge-primary">成果單總覽</span>
+          <h2 class="card-title text-xl mt-1">學生個人探究成果學習單 (A4 格式)</h2>
+          <p class="text-xs text-muted">自動彙整你在各階段的書寫、證據查核、CER 短文與校園方案</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn btn-primary text-xs" onclick="window.print()">🖨️ 一鍵列印 / 存為 PDF</button>
+          <button class="btn btn-secondary text-xs" onclick="App.exportJSON()">💾 匯出學習歷程 (JSON)</button>
+          <label class="btn btn-secondary text-xs cursor-pointer">
+            📂 匯入學習歷程
+            <input type="file" accept=".json" class="hidden" onchange="App.importJSON(event)">
+          </label>
+        </div>
+      </div>
+
+      <!-- Printable Report Sheet -->
+      <div class="card p-8 bg-white dark:bg-slate-900 border-2 border-border-color shadow-xl">
+        <!-- Sheet Header -->
+        <div class="text-center border-b-2 border-slate-900 dark:border-slate-100 pb-4 mb-6">
+          <h1 class="text-2xl font-black text-heading">AI 生成內容是否應標示？公共議題探究學習成果單</h1>
+          <p class="text-xs text-muted mt-1">教育部高中跨域素養導向課程 • 公民、資訊科技、國文跨域</p>
+          <div class="flex justify-center gap-6 mt-3 text-xs font-bold text-heading">
+            <span>班級：<span id="port-class" class="text-primary underline">高二 3 班</span></span>
+            <span>座號：<span id="port-seat" class="text-primary underline">15</span></span>
+            <span>姓名：<span id="port-name" class="text-primary underline">林同學</span></span>
+            <span>小組：<span id="port-group" class="text-primary underline">第 2 組</span></span>
+          </div>
+        </div>
+
+        <div class="space-y-6 text-sm">
+          <!-- Step 1 & 2 -->
+          <div class="border-b border-border-color pb-4">
+            <h3 class="font-bold text-primary mb-2">【階段一、二】情境觀察、初探立場與核心研究問題</h3>
+            <p><strong>課前第一立場：</strong> <span id="port-s1-stance" class="font-semibold text-heading">未選擇</span></p>
+            <p class="mt-1"><strong>海報比對觀察線索：</strong> <span id="port-s1-notes" class="text-body whitespace-pre-wrap">無紀錄</span></p>
+            <p class="mt-2"><strong>探究核心問題：</strong> <span id="port-s2-q" class="font-semibold text-heading">無紀錄</span></p>
+            <div class="mt-1 text-xs text-muted">
+              <div>假設 1：<span id="port-s2-h1">無紀錄</span></div>
+              <div>假設 2：<span id="port-s2-h2">無紀錄</span></div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="border-b border-border-color pb-4">
+            <h3 class="font-bold text-cyan-600 mb-2">【階段三】三張關鍵一手證據卡查核摘要</h3>
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded">
+                <strong>證據 1：</strong> <span id="port-s3-e1" class="whitespace-pre-wrap">無紀錄</span>
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded">
+                <strong>證據 2：</strong> <span id="port-s3-e2" class="whitespace-pre-wrap">無紀錄</span>
+              </div>
+              <div class="p-2.5 bg-slate-50 dark:bg-slate-800 rounded">
+                <strong>證據 3：</strong> <span id="port-s3-e3" class="whitespace-pre-wrap">無紀錄</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="border-b border-border-color pb-4">
+            <h3 class="font-bold text-amber-600 mb-2">【階段四】多元角色利益比較與治理方案選擇</h3>
+            <p id="port-s4-role" class="text-body whitespace-pre-wrap">無紀錄</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="border-b border-border-color pb-4">
+            <h3 class="font-bold text-indigo-600 mb-2">【階段五】CER 政策論證短文</h3>
+            <div id="port-s5-cer" class="p-3 bg-indigo-50/50 dark:bg-indigo-950/20 rounded-lg text-xs leading-relaxed whitespace-pre-wrap">尚未填寫</div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="border-b border-border-color pb-4">
+            <h3 class="font-bold text-emerald-600 mb-2">【階段六】校園 AI 內容標示指引方案</h3>
+            <p id="port-s6-policy" class="text-body whitespace-pre-wrap">無紀錄</p>
+          </div>
+
+          <!-- Step 7 -->
+          <div>
+            <h3 class="font-bold text-purple-600 mb-2">【階段七】課後反思、前後立場對比與 Exit Ticket</h3>
+            <p><strong>課後反思立場：</strong> <span id="port-s7-post" class="font-bold text-emerald-600">未選擇</span></p>
+            <div class="mt-2 p-3 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-200 dark:border-purple-800 text-xs">
+              <strong>🎫 Exit Ticket (30字核心總結)：</strong>
+              <div id="port-s7-exit" class="mt-1 font-bold text-heading text-sm">無紀錄</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Feedback Space -->
+        <div class="mt-8 pt-4 border-t-2 border-dashed border-border-color text-xs">
+          <div class="flex justify-between items-center mb-4">
+            <span class="font-bold text-sm text-heading">教師評量回饋欄（滿分 20 分）：</span>
+            <div class="space-x-4">
+              <span>評定分數：____________ 分</span>
+              <span>教師簽名：____________</span>
+            </div>
+          </div>
+          <div class="h-16 border border-slate-300 dark:border-slate-700 rounded p-2 text-muted">
+            教師評語與改進建議...
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="text-center py-6 border-t border-border-color text-xs text-muted mt-8 bg-surface">
+        <p>AI 生成內容是否應標示？高中公共議題探究課程 • 2026 年 9 月資料查核現行版</p>
+        <p class="mt-1">結合 4 節課 (200 分鐘) 教學流程設計與 7 階段探究實作手冊 • 支援手機、平板與電腦全端操作</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+
+    /* --- WEB AUDIO API SYNTHESIZER --- */
+    class AudioEngine {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+        this.volume = 0.3;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playTone(freq, type = 'sine', duration = 0.1, delay = 0) {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        setTimeout(() => {
+          try {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + duration);
+          } catch(e) {
+            console.warn('Audio play error:', e);
+          }
+        }, delay * 1000);
+      }
+
+      playClick() {
+        this.playTone(600, 'triangle', 0.05);
+      }
+
+      playPop() {
+        this.playTone(880, 'sine', 0.08);
+      }
+
+      playToggle(state) {
+        if (state) {
+          this.playTone(440, 'sine', 0.08);
+          this.playTone(660, 'sine', 0.08, 0.07);
+        } else {
+          this.playTone(660, 'sine', 0.08);
+          this.playTone(440, 'sine', 0.08, 0.07);
+        }
+      }
+
+      playSuccess() {
+        // Bright major chord: C5, E5, G5, C6
+        this.playTone(523.25, 'triangle', 0.2, 0);
+        this.playTone(659.25, 'triangle', 0.2, 0.08);
+        this.playTone(783.99, 'triangle', 0.2, 0.16);
+        this.playTone(1046.50, 'triangle', 0.35, 0.24);
+      }
+
+      playDing() {
+        this.playTone(987.77, 'sine', 0.4);
+      }
+
+      playAlarm() {
+        this.playTone(587.33, 'triangle', 0.2, 0);
+        this.playTone(880.00, 'triangle', 0.2, 0.15);
+        this.playTone(587.33, 'triangle', 0.2, 0.3);
+        this.playTone(880.00, 'triangle', 0.4, 0.45);
+      }
+    }
+
+    const sound = new AudioEngine();
+
+    /* --- I18N DICTIONARY --- */
+    const I18N = {
+      zh: {
+        app_title: "AI 生成內容是否應標示？",
+        app_subtitle: "高中跨域公共議題探究互動平台 • 4節課教學歷程 × 7階段探究任務",
+        tab_student: "🎒 學生學習任務",
+        tab_teacher: "👨‍🏫 教師教學歷程",
+        tab_arena: "⚖️ 議題公聽會",
+        tab_portfolio: "📑 探究成果成果單",
+        btn_settings: "⚙️ 顯示與操作設定",
+        btn_fullscreen: "全螢幕",
+        btn_next: "前往下一階段 ➔",
+        btn_prev: "⬅ 返回上一階段",
+        btn_save: "儲存紀錄",
+        btn_export: "匯出學習歷程",
+        btn_print: "列印學習單",
+        settings_title: "⚙️ 顯示與操作設定",
+        settings_sub: "自訂您的檢視與操作偏好（支援七大即時切換）",
+        s_fullscreen_title: "1. 全螢幕模式 (Fullscreen)",
+        s_fullscreen_desc: "切換全螢幕沈浸式教學與學習視野",
+        s_sound_title: "2. 音效反饋 (Sound Effects)",
+        s_sound_desc: "操作提示音、答對提示音與計時提醒音",
+        s_device_title: "3. 裝置模式 (Device Mode)",
+        s_device_desc: "模擬手機、平板與電腦最佳適應版型",
+        s_orient_title: "4. 版面配置 (Orientation)",
+        s_orient_desc: "自動適應、強制直式或橫式視圖",
+        s_lang_title: "5. 語言切換 (Language)",
+        s_lang_desc: "繁體中文與 English 雙語切換",
+        s_font_title: "6. 字體大小 (Font Size)",
+        s_font_desc: "縮小 (14px) / 標準 (16px) / 放大 (19px) - 確保高清晰閱讀",
+        s_theme_title: "7. 色系風格 (Color Theme)",
+        s_theme_desc: "跟隨系統、明亮高對比或深邃暗色",
+        close_settings: "完成並關閉設定",
+        btn_test_sound: "測試音效 🔔",
+        fullscreen_on: "進入全螢幕 ⛶",
+        fullscreen_off: "退出全螢幕 ⛶",
+        btn_sound_on: "開啟 🔔",
+        btn_sound_off: "關閉 🔇",
+        btn_auto: "自動",
+        btn_mobile: "手機 📱",
+        btn_tablet: "平板 📟",
+        btn_desktop: "電腦 💻",
+        btn_portrait: "直式 📱",
+        btn_landscape: "橫式 🖥️",
+        btn_sm: "縮小",
+        btn_base: "標準",
+        btn_lg: "放大",
+        btn_theme_auto: "跟隨系統",
+        btn_theme_light: "亮色 ☀️",
+        btn_theme_dark: "暗色 🌙"
+      },
+      en: {
+        app_title: "Should AI-Generated Content Be Labeled?",
+        app_subtitle: "High School Public Policy Inquiry • 4 Lessons × 7 Inquiry Missions",
+        tab_student: "🎒 Student Missions",
+        tab_teacher: "👨‍🏫 Teacher Hub",
+        tab_arena: "⚖️ Public Hearing Arena",
+        tab_portfolio: "📑 Student Portfolio",
+        btn_settings: "⚙️ Display & Settings",
+        btn_fullscreen: "Fullscreen",
+        btn_next: "Next Mission ➔",
+        btn_prev: "⬅ Previous Mission",
+        btn_save: "Save Progress",
+        btn_export: "Export Portfolio",
+        btn_print: "Print Portfolio",
+        settings_title: "⚙️ Display & Operation Settings",
+        settings_sub: "Customize your viewing and interactive preferences (7 live switches)",
+        s_fullscreen_title: "1. Fullscreen Mode",
+        s_fullscreen_desc: "Toggle fullscreen immersive classroom view",
+        s_sound_title: "2. Sound Effects",
+        s_sound_desc: "Interactive audio clicks, chimes, and timer bells",
+        s_device_title: "3. Device Simulation",
+        s_device_desc: "Responsive preview for Mobile, Tablet, and Desktop",
+        s_orient_title: "4. Layout Orientation",
+        s_orient_desc: "Auto adaptive, forced portrait or landscape view",
+        s_lang_title: "5. Language",
+        s_lang_desc: "Toggle Traditional Chinese and English",
+        s_font_title: "6. Font Size",
+        s_font_desc: "Small (14px) / Normal (16px) / Large (19px) - High legibility",
+        s_theme_title: "7. Color Theme",
+        s_theme_desc: "Follow system, bright vibrant light or sleek dark mode",
+        close_settings: "Done & Close",
+        btn_test_sound: "Test Sound 🔔",
+        fullscreen_on: "Enter Fullscreen ⛶",
+        fullscreen_off: "Exit Fullscreen ⛶",
+        btn_sound_on: "On 🔔",
+        btn_sound_off: "Off 🔇",
+        btn_auto: "Auto",
+        btn_mobile: "Mobile 📱",
+        btn_tablet: "Tablet 📟",
+        btn_desktop: "Desktop 💻",
+        btn_portrait: "Portrait 📱",
+        btn_landscape: "Landscape 🖥️",
+        btn_sm: "Small",
+        btn_base: "Normal",
+        btn_lg: "Large",
+        btn_theme_auto: "System",
+        btn_theme_light: "Light ☀️",
+        btn_theme_dark: "Dark 🌙"
+      }
+    };
+
+    /* --- SETTINGS MANAGER (7 TOGGLES) --- */
+    class SettingsManager {
+      constructor() {
+        this.state = {
+          fullscreen: false,
+          sound: true,
+          device: 'auto',
+          orientation: 'auto',
+          lang: 'zh',
+          fontSize: 'base',
+          theme: 'auto'
+        };
+        this.loadSettings();
+      }
+
+      loadSettings() {
+        try {
+          const saved = localStorage.getItem('agy_ai_settings');
+          if (saved) {
+            this.state = { ...this.state, ...JSON.parse(saved) };
+          }
+        } catch(e) {}
+        this.applyAll();
+      }
+
+      saveSettings() {
+        try {
+          localStorage.setItem('agy_ai_settings', JSON.stringify(this.state));
+        } catch(e) {}
+      }
+
+      applyAll() {
+        this.setSound(this.state.sound, false);
+        this.setDevice(this.state.device, false);
+        this.setOrientation(this.state.orientation, false);
+        this.setLanguage(this.state.lang, false);
+        this.setFontSize(this.state.fontSize, false);
+        this.setTheme(this.state.theme, false);
+        this.updateModalUI();
+      }
+
+      // 1. Fullscreen toggle
+      toggleFullscreen() {
+        sound.playClick();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().then(() => {
+            this.state.fullscreen = true;
+            this.updateModalUI();
+          }).catch(() => {
+            alert('瀏覽器阻擋了全螢幕模式，請嘗試直接按下鍵盤上的 F11 鍵。');
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().then(() => {
+              this.state.fullscreen = false;
+              this.updateModalUI();
+            });
+          }
+        }
+      }
+
+      // 2. Sound toggle
+      setSound(enabled, playAudio = true) {
+        this.state.sound = enabled;
+        sound.enabled = enabled;
+        if (playAudio) sound.playToggle(enabled);
+        this.saveSettings();
+        this.updateModalUI();
+      }
+
+      // 3. Device simulation
+      setDevice(device, playAudio = true) {
+        this.state.device = device;
+        document.body.dataset.device = device;
+        if (playAudio) sound.playClick();
+        this.saveSettings();
+        this.updateModalUI();
+      }
+
+      // 4. Orientation
+      setOrientation(orient, playAudio = true) {
+        this.state.orientation = orient;
+        document.body.dataset.orientation = orient;
+        if (playAudio) sound.playClick();
+        this.saveSettings();
+        this.updateModalUI();
+      }
+
+      // 5. Language
+      setLanguage(lang, playAudio = true) {
+        this.state.lang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+        if (playAudio) sound.playClick();
+        this.saveSettings();
+        this.updateI18nTexts();
+        this.updateModalUI();
+      }
+
+      // 6. Font size
+      setFontSize(size, playAudio = true) {
+        this.state.fontSize = size;
+        document.documentElement.dataset.fontsize = size;
+        if (playAudio) sound.playClick();
+        this.saveSettings();
+        this.updateModalUI();
+      }
+
+      // 7. Theme
+      setTheme(theme, playAudio = true) {
+        this.state.theme = theme;
+        document.documentElement.dataset.theme = theme;
+        if (playAudio) sound.playClick();
+        this.saveSettings();
+        this.updateModalUI();
+      }
+
+      updateI18nTexts() {
+        const dict = I18N[this.state.lang] || I18N.zh;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.textContent = dict[key];
+          }
+        });
+      }
+
+      updateModalUI() {
+        const dict = I18N[this.state.lang] || I18N.zh;
+
+        // Fullscreen btn
+        const fsBtn = document.getElementById('setting-fs-btn');
+        if (fsBtn) {
+          const isFs = !!document.fullscreenElement;
+          fsBtn.textContent = isFs ? dict.fullscreen_off : dict.fullscreen_on;
+          fsBtn.className = isFs ? 'segmented-btn active' : 'segmented-btn';
+        }
+
+        // Sound btns
+        this.updateGroupBtns('sound-group', this.state.sound ? 'on' : 'off');
+        // Device btns
+        this.updateGroupBtns('device-group', this.state.device);
+        // Orientation btns
+        this.updateGroupBtns('orient-group', this.state.orientation);
+        // Language btns
+        this.updateGroupBtns('lang-group', this.state.lang);
+        // Font btns
+        this.updateGroupBtns('font-group', this.state.fontSize);
+        // Theme btns
+        this.updateGroupBtns('theme-group', this.state.theme);
+
+        // Header sound quick button
+        const soundQuickBtn = document.getElementById('header-sound-quick');
+        if (soundQuickBtn) {
+          soundQuickBtn.innerHTML = this.state.sound ? '🔊' : '🔇';
+          soundQuickBtn.title = this.state.sound ? '音效開啟 (點擊關閉)' : '音效已靜音 (點擊開啟)';
+        }
+      }
+
+      updateGroupBtns(groupId, activeVal) {
+        const group = document.getElementById(groupId);
+        if (!group) return;
+        group.querySelectorAll('.segmented-btn').forEach(btn => {
+          if (btn.dataset.val === String(activeVal)) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    const settings = new SettingsManager();
+
+    // Listen to fullscreen changes from Esc or OS
+    document.addEventListener('fullscreenchange', () => {
+      settings.updateModalUI();
+    });
+
+    /* --- APPLICATION LOGIC --- */
+    const App = {
+      currentView: 'student',
+      currentMission: 1,
+      timerInterval: null,
+      timerSeconds: 900, // 15 min default
+      timerTotal: 900,
+      timerRunning: false,
+      rubricScores: {
+        evidence: 4,
+        reasoning: 4,
+        perspectives: 4,
+        feasibility: 4,
+        reflection: 4
+      },
+
+      init() {
+        this.bindEvents();
+        this.restoreStudentData();
+        this.renderRubricCalculator();
+        this.updateMissionUI();
+        this.updateBalanceScale();
+      },
+
+      bindEvents() {
+        // Navigation Tabs
+        document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            sound.playTab();
+            const view = btn.dataset.view;
+            this.switchView(view);
+          });
+        });
+
+        // Stepper Navigation
+        document.querySelectorAll('.step-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            sound.playClick();
+            const step = parseInt(pill.dataset.step);
+            this.switchMission(step);
+          });
+        });
+
+        // Settings Modal triggers
+        document.getElementById('open-settings-btn').addEventListener('click', () => {
+          sound.playClick();
+          document.getElementById('settings-modal').classList.add('open');
+        });
+        document.getElementById('close-settings-btn').addEventListener('click', () => {
+          sound.playClick();
+          document.getElementById('settings-modal').classList.remove('open');
+        });
+        document.getElementById('settings-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'settings-modal') {
+            sound.playClick();
+            document.getElementById('settings-modal').classList.remove('open');
+          }
+        });
+
+        // Quick action buttons
+        document.getElementById('header-sound-quick').addEventListener('click', () => {
+          settings.setSound(!settings.state.sound);
+        });
+        document.getElementById('header-fs-quick').addEventListener('click', () => {
+          settings.toggleFullscreen();
+        });
+        document.getElementById('header-theme-quick').addEventListener('click', () => {
+          const next = settings.state.theme === 'dark' ? 'light' : 'dark';
+          settings.setTheme(next);
+        });
+
+        // Sound test button inside modal
+        document.getElementById('btn-test-sound').addEventListener('click', () => {
+          sound.playSuccess();
+        });
+
+        // Radio pills in Mission 1 (Initial Stance)
+        document.querySelectorAll('#stance-pills .radio-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            sound.playClick();
+            document.querySelectorAll('#stance-pills .radio-pill').forEach(p => p.classList.remove('selected'));
+            pill.classList.add('selected');
+            document.getElementById('student-stance-1').value = pill.dataset.val;
+            this.autoSave();
+          });
+        });
+
+        // Radio pills in Mission 7 (Post Stance)
+        document.querySelectorAll('#post-stance-pills .radio-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            sound.playClick();
+            document.querySelectorAll('#post-stance-pills .radio-pill').forEach(p => p.classList.remove('selected'));
+            pill.classList.add('selected');
+            document.getElementById('student-post-stance').value = pill.dataset.val;
+            this.autoSave();
+            this.renderStanceComparison();
+          });
+        });
+
+        // Confidence slider
+        const confSlider = document.getElementById('conf-slider');
+        if (confSlider) {
+          confSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('conf-val').textContent = val;
+            const labels = ['0 (完全無信心)', '1 (偏低)', '2 (微弱)', '3 (中等信心)', '4 (相當確信)', '5 (極有把握)'];
+            document.getElementById('conf-desc').textContent = labels[val] || '';
+            this.autoSave();
+          });
+        }
+
+        // 30-Word Exit Ticket counter
+        const exitTicket = document.getElementById('exit-ticket-input');
+        if (exitTicket) {
+          exitTicket.addEventListener('input', (e) => {
+            const len = e.target.value.trim().length;
+            const counter = document.getElementById('exit-ticket-counter');
+            counter.textContent = `${len} / 30 字`;
+            if (len > 30) {
+              counter.style.color = '#ef4444';
+              counter.textContent = `${len} / 30 字 (已超過 30 字限制！)`;
+            } else if (len >= 10) {
+              counter.style.color = '#10b981';
+            } else {
+              counter.style.color = '#64748b';
+            }
+            this.autoSave();
+          });
+        }
+
+        // Stakeholder cards in Mission 4
+        document.querySelectorAll('.role-card').forEach(card => {
+          card.addEventListener('click', () => {
+            sound.playClick();
+            document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            this.showRoleDetail(card.dataset.role);
+          });
+        });
+
+        // Balance sliders in Mission 4
+        ['transparency', 'freedom', 'fairness', 'cost'].forEach(factor => {
+          const el = document.getElementById(`balance-${factor}`);
+          if (el) {
+            el.addEventListener('input', () => this.updateBalanceScale());
+          }
+        });
+
+        // Classroom Timer buttons
+        document.getElementById('timer-toggle-btn').addEventListener('click', () => this.toggleTimer());
+        document.getElementById('timer-reset-btn').addEventListener('click', () => this.resetTimer());
+        document.querySelectorAll('.timer-preset-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            sound.playClick();
+            const mins = parseInt(btn.dataset.mins);
+            this.setTimerPreset(mins);
+          });
+        });
+
+        // Auto save on any text input
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+          input.addEventListener('change', () => this.autoSave());
+        });
+      },
+
+      switchView(viewName) {
+        this.currentView = viewName;
+        document.querySelectorAll('.nav-tab-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.view === viewName);
+        });
+        document.querySelectorAll('.view-panel').forEach(p => {
+          p.style.display = p.id === `view-${viewName}` ? 'block' : 'none';
+        });
+
+        if (viewName === 'portfolio') {
+          this.compilePortfolio();
+        }
+      },
+
+      switchMission(step) {
+        this.currentMission = step;
+        this.updateMissionUI();
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+      },
+
+      updateMissionUI() {
+        document.querySelectorAll('.step-pill').forEach(pill => {
+          pill.classList.toggle('active', parseInt(pill.dataset.step) === this.currentMission);
+        });
+        document.querySelectorAll('.mission-card').forEach(card => {
+          card.style.display = parseInt(card.dataset.mission) === this.currentMission ? 'block' : 'none';
+        });
+
+        // Update Next / Prev buttons
+        const prevBtn = document.getElementById('mission-prev-btn');
+        const nextBtn = document.getElementById('mission-next-btn');
+        if (prevBtn) prevBtn.style.visibility = this.currentMission > 1 ? 'visible' : 'hidden';
+        if (nextBtn) {
+          nextBtn.textContent = this.currentMission === 7 ? '完成探究並檢視成果單 ➔' : '前往下一階段 ➔';
+        }
+      },
+
+      nextMission() {
+        sound.playSuccess();
+        if (this.currentMission < 7) {
+          this.switchMission(this.currentMission + 1);
+        } else {
+          this.switchView('portfolio');
+        }
+      },
+
+      prevMission() {
+        sound.playClick();
+        if (this.currentMission > 1) {
+          this.switchMission(this.currentMission - 1);
+        }
+      },
+
+      // Hotspots for Poster Comparison
+      showHotspot(id) {
+        sound.playDing();
+        const details = {
+          posterA_face: {
+            title: "海報甲 • 講者面容線索 (AI 生成照片)",
+            desc: "【問題現象】海報使用了極具權威感的主講人西裝肖像，但仔細觀察耳廓輪廓與光線反射，實為擴散模型生成的虛構人像。未加註標示時，讀者會完全誤以為林博士為真實出席講者，造成嚴重公信力誤判。"
+          },
+          posterA_quote: {
+            title: "海報甲 • 名言引語線索 (未經查證之生成句子)",
+            desc: "【問題現象】海報中的金句『未來的競爭在於誰能堅守人類思維的真實』極具啟發性，但該名言從未出自真實論文，亦非林博士本人之授權言論。虛構引言未揭露，已構成對閱聽人實質認知的誤導。"
+          },
+          posterB_art: {
+            title: "海報乙 • 抽象量子背景 (生成式藝術風格)",
+            desc: "【健康應用】海報乙使用具備明顯科技抽象風格的 AI 繪圖作為視覺氛圍裝飾，並未冒充任何真實歷史場景或個人肖像，屬於美學輔助創作。"
+          },
+          posterB_c2pa: {
+            title: "海報乙 • Content Credentials 來源標章 (C2PA)",
+            desc: "【透明典範】海報乙下方明確標註：『✨ 本海報背景由 AI 輔助生成，活動內容與主講資訊經主辦單位審核』，並附有可加密查驗的 C2PA 憑證鏈，成功兼顧科技輔助與資訊真實。"
+          }
+        };
+
+        const item = details[id];
+        if (!item) return;
+
+        const modal = document.getElementById('hotspot-modal');
+        document.getElementById('hotspot-modal-title').textContent = item.title;
+        document.getElementById('hotspot-modal-desc').textContent = item.desc;
+        modal.classList.add('open');
+      },
+
+      // C2PA Interactive Inspector
+      openC2PAInspector() {
+        sound.playSuccess();
+        document.getElementById('c2pa-modal').classList.add('open');
+      },
+
+      // Fallacy Quiz
+      checkFallacy(quizNum, choice) {
+        sound.playClick();
+        const feedbackEl = document.getElementById(`fallacy-feedback-${quizNum}`);
+        if (!feedbackEl) return;
+        feedbackEl.classList.remove('hidden');
+
+        if (quizNum === 1) {
+          if (choice === 'no') {
+            sound.playSuccess();
+            feedbackEl.className = 'speech-bubble mt-3 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200';
+            feedbackEl.innerHTML = '<strong>✅ 答對了！</strong> C2PA 來源憑證只證明「由誰在何時簽署發布並記錄編修歷程」，無法證明內容陳述本身是否為客觀真理；沒有憑證亦不等於偽造（可能只是平台轉傳時去除了中繼資料）！';
+          } else {
+            sound.playPop();
+            feedbackEl.className = 'speech-bubble mt-3 border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-900 dark:text-rose-200';
+            feedbackEl.innerHTML = '<strong>❌ 觀念澄清：</strong> 憑證技術是「來源驗證工具」，非「真理裁判所」。沒有憑證可能是因為軟體未支援或上傳時被社群平台移除元數據，不能直接扣上偽造帽子。';
+          }
+        } else if (quizNum === 2) {
+          if (choice === 'no') {
+            sound.playSuccess();
+            feedbackEl.className = 'speech-bubble mt-3 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200';
+            feedbackEl.innerHTML = '<strong>✅ 答對了！</strong> 台灣數位發展部之規範依據為《詐欺犯罪危害防制條例》，限制對象為「特定網路廣告」中之深偽與AI影像，不可無限制推論至一般校園社團海報或學生作業！';
+          } else {
+            sound.playPop();
+            feedbackEl.className = 'speech-bubble mt-3 border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-900 dark:text-rose-200';
+            feedbackEl.innerHTML = '<strong>❌ 觀念澄清：</strong> 必須注意法規的「適用範圍」！該條例專注於打擊詐騙廣告，若將其擴大適用到所有學生創作，將誤解法規意旨。';
+          }
+        }
+      },
+
+      // Stakeholder display in Mission 4
+      showRoleDetail(role) {
+        const rolesData = {
+          student: {
+            title: "高中學生（小宇）",
+            concern: "合理協助、成績公平、避免莫須有指控",
+            quote: "「我只是用 AI 幫忙檢查英文作文文法，或在找小論文研究架構時請它腦力激盪。如果連改一個錯字都要填繁瑣的申報表，我只會覺得恐懼並乾脆放棄使用...但我也反對同學全篇用 AI 生成卻拿到高分！」",
+            question: "必問問題：潤飾一句話也需要標示嗎？如何區分『思考主體』與『工具輔助』？",
+            proposal: "支持【方案 B：風險分級標示】—— 核心論述禁止全篇生成，語言潤飾自述，作業附上使用歷程。"
+          },
+          teacher: {
+            title: "學科教師（陳老師）",
+            concern: "可評量的原創思考、防範代寫、教學引導",
+            quote: "「身為老師，我想看到的是你真實的思維碰撞與論證瑕疵，而不是 AI 吐出的完美罐頭文字。但我們不希望標示變成形式主義的行文負擔，而是能幫助師生對話的教學歷程。」",
+            question: "必問問題：怎樣讓標示幫助學習，而非只是增加一堆沒有人看審查表單？",
+            proposal: "支持【方案 B：風險分級標示】—— 明訂作業核心評量面向，提供彈性透明指引。"
+          },
+          creator: {
+            title: "社團美編／學生創作者（小涵）",
+            concern: "創作自由、署名權、構想與修圖界線",
+            quote: "「我花了三天手繪草圖、調光、構圖，只是背景的一顆星球用 AI 快速生成質地。如果整張海報被強貼一個巨大的『AI 生成』標籤，我的原創心血全被抹煞了！」",
+            question: "必問問題：誰來決定什麼叫做『實質修改』？藝術表達的自由度何在？",
+            proposal: "支持【方案 C 或 B 彈性案】—— 標記由創作者自主揭露比例，保護人類原創性認可。"
+          },
+          editor: {
+            title: "校刊社新聞主編（阿澤）",
+            concern: "查證真實性、新聞公信力、防止假圖傳播",
+            quote: "「新聞照片是歷史的底片。如果校刊刊登一張由 AI 產生的集會照片卻沒標註，讀者會誤以為真的發生了那件事！一旦公信力破產，校刊就失去存在的價值。」",
+            question: "必問問題：標示是否足以阻止錯誤資訊轉傳？當圖片被截圖轉貼時標記如何留存？",
+            proposal: "支持【方案 A：一律強制標示】—— 新聞與紀實報導必須零容忍，一律加註浮水印與文字揭露。"
+          },
+          platform: {
+            title: "校園論壇維運團隊／工程師（Leo）",
+            concern: "執行成本、技術可行性、截圖掉憑證",
+            quote: "「論壇每天有上千則發文，如果要伺服器逐一進行 AI 辨識模型審查，運算成本極高且準確度不可能 100%。再加上圖片只要被手機截圖，C2PA 憑證就遺失了，技術不是萬靈丹。」",
+            question: "必問問題：上傳後標記消失怎麼辦？如何平衡審查成本與社群自由？",
+            proposal: "支持【方案 C 搭配檢舉機制】—— 倡議使用者自律標示，重大仿冒個案採事後申訴下架。"
+          },
+          victim: {
+            title: "遭仿冒合成同學（彤彤）",
+            concern: "人格權保護、防範深偽霸凌、即時移除機制",
+            quote: "「之前有人用 AI 把我的臉移花接木做成迷因圖在班群散布，雖然旁邊寫了『純屬娛樂』，但大家看到的第一眼都在嘲笑我！對未成年人的人像與聲音仿冒，必須絕對零容忍並立即下架！」",
+            question: "必問問題：怎樣快速處理仿聲仿像？傷害造成後標示還有用嗎？",
+            proposal: "支持【方案 B 嚴格深偽條款】—— 涉及個人肖像、聲音之未授權生成，一律強制下架並記過處分。"
+          }
+        };
+
+        const data = rolesData[role];
+        if (!data) return;
+
+        document.getElementById('role-detail-name').textContent = data.title;
+        document.getElementById('role-detail-concern').textContent = `主要關切：${data.concern}`;
+        document.getElementById('role-detail-quote').textContent = data.quote;
+        document.getElementById('role-detail-question').textContent = data.question;
+        document.getElementById('role-detail-proposal').textContent = data.proposal;
+      },
+
+      // Balance scale update
+      updateBalanceScale() {
+        const tEl = document.getElementById('balance-transparency');
+        const fEl = document.getElementById('balance-freedom');
+        const faEl = document.getElementById('balance-fairness');
+        const cEl = document.getElementById('balance-cost');
+
+        if (!tEl || !fEl || !faEl || !cEl) return;
+
+        const t = parseInt(tEl.value);
+        const f = parseInt(fEl.value);
+        const fa = parseInt(faEl.value);
+        const c = parseInt(cEl.value);
+
+        // Update numbers on screen
+        const vt = document.getElementById('val-transparency');
+        const vf = document.getElementById('val-freedom');
+        const vfa = document.getElementById('val-fairness');
+        const vc = document.getElementById('val-cost');
+        if (vt) vt.textContent = t;
+        if (vf) vf.textContent = f;
+        if (vfa) vfa.textContent = fa;
+        if (vc) vc.textContent = c;
+
+        // Left side: Transparency + Fairness
+        const leftScore = t + fa;
+        // Right side: Freedom + Cost (Low cost is better, so inverted cost burden)
+        const rightScore = f + (10 - c);
+
+        const diff = leftScore - rightScore; // > 0 leans left, < 0 leans right
+        const angle = Math.max(-15, Math.min(15, -diff * 1.5));
+
+        const beam = document.getElementById('scale-beam');
+        if (beam) {
+          beam.setAttribute('transform', `rotate(${angle} 160 40)`);
+        }
+
+        const summary = document.getElementById('scale-summary');
+        if (summary) {
+          if (diff > 3) {
+            summary.innerHTML = '<span class="text-indigo-600 dark:text-indigo-400 font-bold">天平傾向「高度嚴管透明」</span>：閱聽人保障高，但創作者自由與審查負擔可能過重。';
+          } else if (diff < -3) {
+            summary.innerHTML = '<span class="text-rose-600 dark:text-rose-400 font-bold">天平傾向「高度自律寬鬆」</span>：創作自由無拘束且無審核成本，但真偽混淆與誤導風險大幅增加。';
+          } else {
+            summary.innerHTML = '<span class="text-emerald-600 dark:text-emerald-400 font-bold">天平呈現「平衡分級治理」</span>：在核心重大風險處落實標示，其餘留給創作彈性，為最理想的務實解方。';
+          }
+        }
+      },
+
+      // CER Argumentation Short Essay Builder
+      generateCEREssay() {
+        sound.playSuccess();
+        const claim = document.getElementById('cer-claim').value || '未填寫主張';
+        const ev1 = document.getElementById('cer-ev1').value || '未填寫證據 1';
+        const ev2 = document.getElementById('cer-ev2').value || '未填寫證據 2';
+        const reasoning = document.getElementById('cer-reasoning').value || '未填寫推理邏輯';
+        const rebuttal = document.getElementById('cer-rebuttal').value || '未填寫反方反駁';
+
+        const essayHtml = `
+          <div class="p-4 bg-indigo-50 dark:bg-indigo-950/40 rounded-xl border border-indigo-200 dark:border-indigo-800">
+            <h4 class="text-lg font-bold text-indigo-900 dark:text-indigo-200 mb-2">📑 我的 AI 內容標示政策 CER 短文</h4>
+            <p class="mb-3"><strong>【核心主張 Claim】</strong> ${claim}</p>
+            <p class="mb-2"><strong>【查證證據 Evidence】</strong></p>
+            <ul class="list-disc pl-5 mb-3 space-y-1 text-sm">
+              <li>${ev1}</li>
+              <li>${ev2}</li>
+            </ul>
+            <p class="mb-3"><strong>【推理論證 Reasoning】</strong> ${reasoning}</p>
+            <p><strong>【反方觀點與回應 Rebuttal】</strong> ${rebuttal}</p>
+          </div>
+        `;
+        document.getElementById('cer-preview-box').innerHTML = essayHtml;
+        this.autoSave();
+      },
+
+      // Policy Badge Generator in Mission 6
+      generatePolicyBadge() {
+        sound.playSuccess();
+        const schoolName = document.getElementById('badge-school-name').value || '卓越高中';
+        const level = document.getElementById('badge-policy-level').value;
+        const color = level === 'A' ? '#4f46e5' : (level === 'B' ? '#059669' : '#d97706');
+        const levelText = level === 'A' ? '嚴格標示規範' : (level === 'B' ? '分級透明規範' : '自律引導規範');
+
+        const badgeSvg = `
+          <svg viewBox="0 0 240 70" width="240" height="70" xmlns="http://www.w3.org/2000/svg">
+            <rect width="240" height="70" rx="14" fill="${color}" fill-opacity="0.12" stroke="${color}" stroke-width="2"/>
+            <circle cx="36" cy="35" r="18" fill="${color}"/>
+            <path d="M28,35 L33,40 L44,29" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <text x="64" y="30" font-size="13" font-weight="bold" fill="${color}">${schoolName} 校園 AI 指引</text>
+            <text x="64" y="48" font-size="11" fill="#475569">${levelText} • 認證合規標章</text>
+          </svg>
+        `;
+        document.getElementById('badge-preview-area').innerHTML = badgeSvg;
+        this.autoSave();
+      },
+
+      // Peer Usability Test Simulator
+      runPeerTest() {
+        sound.playDing();
+        const testRes = document.getElementById('peer-test-result');
+        testRes.style.display = 'block';
+        testRes.innerHTML = `
+          <div class="p-3 bg-amber-50 dark:bg-amber-950/40 rounded-lg border border-amber-300 dark:border-amber-700 text-sm text-amber-900 dark:text-amber-200">
+            <strong>🧑‍🎓 同儕測試模擬反饋（高二 3 班 吳同學）：</strong><br>
+            「你的『必標情況』寫得非常清楚，特別是禁止人像偽造這點很有安全感！但我對『範例句 1』有點疑問：如果我只是請 AI 生成作文大綱，卻沒有採用它寫出的段落，也需要用這句標示嗎？建議在『例外條款』中補充說明！」
+          </div>
+        `;
+      },
+
+      // Classroom Timer
+      toggleTimer() {
+        sound.playClick();
+        if (this.timerRunning) {
+          clearInterval(this.timerInterval);
+          this.timerRunning = false;
+          document.getElementById('timer-toggle-btn').textContent = '繼續計時 ▶';
+          document.getElementById('timer-toggle-btn').className = 'btn btn-primary';
+        } else {
+          this.timerRunning = true;
+          document.getElementById('timer-toggle-btn').textContent = '暫停計時 ⏸';
+          document.getElementById('timer-toggle-btn').className = 'btn btn-secondary';
+          this.timerInterval = setInterval(() => {
+            if (this.timerSeconds > 0) {
+              this.timerSeconds--;
+              this.renderTimer();
+            } else {
+              clearInterval(this.timerInterval);
+              this.timerRunning = false;
+              sound.playAlarm();
+              alert('⏰ 時間到！請教師主持各組進度彙整與小結。');
+              this.resetTimer();
+            }
+          }, 1000);
+        }
+      },
+
+      resetTimer() {
+        clearInterval(this.timerInterval);
+        this.timerRunning = false;
+        this.timerSeconds = this.timerTotal;
+        this.renderTimer();
+        const btn = document.getElementById('timer-toggle-btn');
+        if (btn) {
+          btn.textContent = '開始計時 ▶';
+          btn.className = 'btn btn-primary';
+        }
+      },
+
+      setTimerPreset(mins) {
+        clearInterval(this.timerInterval);
+        this.timerRunning = false;
+        this.timerTotal = mins * 60;
+        this.timerSeconds = this.timerTotal;
+        this.renderTimer();
+        const btn = document.getElementById('timer-toggle-btn');
+        if (btn) {
+          btn.textContent = '開始計時 ▶';
+          btn.className = 'btn btn-primary';
+        }
+      },
+
+      renderTimer() {
+        const m = Math.floor(this.timerSeconds / 60).toString().padStart(2, '0');
+        const s = (this.timerSeconds % 60).toString().padStart(2, '0');
+        const el = document.getElementById('timer-display');
+        if (el) el.textContent = `${m}:${s}`;
+      },
+
+      // 20-Point Rubric Interactive Calculator
+      setRubricScore(dimension, score) {
+        sound.playClick();
+        this.rubricScores[dimension] = score;
+        // Update table UI
+        document.querySelectorAll(`.rubric-row-${dimension} .rubric-cell`).forEach(cell => {
+          if (parseInt(cell.dataset.score) === score) {
+            cell.classList.add('selected');
+          } else {
+            cell.classList.remove('selected');
+          }
+        });
+        this.renderRubricCalculator();
+      },
+
+      renderRubricCalculator() {
+        const total = Object.values(this.rubricScores).reduce((a, b) => a + b, 0);
+        const totalEl = document.getElementById('rubric-total-score');
+        const levelEl = document.getElementById('rubric-grade-badge');
+        const commentEl = document.getElementById('rubric-feedback-text');
+
+        if (totalEl) totalEl.textContent = `${total} / 20 分`;
+
+        if (levelEl && commentEl) {
+          if (total >= 18) {
+            levelEl.className = 'badge badge-success';
+            levelEl.textContent = '等級：卓越 (Level 4: Advanced)';
+            commentEl.textContent = '優質表現：證據查核嚴謹，能明確辨識規範界線與不能證明之處；CER 論述嚴密，且兼顧多元角色需求與校園方案之可行性。';
+          } else if (total >= 14) {
+            levelEl.className = 'badge badge-primary';
+            levelEl.textContent = '等級：良好 (Level 3: Proficient)';
+            commentEl.textContent = '良好表現：引用雙方可靠來源，能大致完成角色換位思考與反方回應；建議進一步強化例外機制與技術限制的剖析。';
+          } else if (total >= 10) {
+            levelEl.className = 'badge badge-warning';
+            levelEl.textContent = '等級：基礎 (Level 2: Developing)';
+            commentEl.textContent = '基礎表現：有基本立場與證據，但推論連結較為薄弱；政策規則較為口號化，需落實具體罰則與執行責任。';
+          } else {
+            levelEl.className = 'badge badge-danger';
+            levelEl.textContent = '等級：待加強 (Level 1: Novice)';
+            commentEl.textContent = '待加強：缺乏一手證據支持，未充分回應反方意見；需重新核對法規適用範圍並補齊 Exit Ticket 與反思。';
+          }
+        }
+      },
+
+      renderStanceComparison() {
+        const s1 = document.getElementById('student-stance-1').value || '未填寫';
+        const s2 = document.getElementById('student-post-stance').value || '未填寫';
+        const el = document.getElementById('stance-compare-chart');
+        if (el) {
+          el.innerHTML = `
+            <div class="grid-2 gap-4">
+              <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">
+                <div class="text-xs text-muted">課前初探立場</div>
+                <div class="text-lg font-bold text-indigo-600 dark:text-indigo-400 mt-1">${s1}</div>
+              </div>
+              <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg text-center">
+                <div class="text-xs text-muted">課後反思立場</div>
+                <div class="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">${s2}</div>
+              </div>
+            </div>
+          `;
+        }
+      },
+
+      // Compile Portfolio View
+      compilePortfolio() {
+        document.getElementById('port-name').textContent = document.getElementById('student-name').value || '（未填寫）';
+        document.getElementById('port-class').textContent = document.getElementById('student-class').value || '（未填寫）';
+        document.getElementById('port-seat').textContent = document.getElementById('student-seat').value || '（未填寫）';
+        document.getElementById('port-group').textContent = document.getElementById('student-group').value || '（未填寫）';
+
+        document.getElementById('port-s1-stance').textContent = document.getElementById('student-stance-1').value || '未選擇';
+        document.getElementById('port-s1-notes').textContent = document.getElementById('student-notes-1').value || '無紀錄';
+
+        document.getElementById('port-s2-q').textContent = document.getElementById('student-q-2').value || '無紀錄';
+        document.getElementById('port-s2-h1').textContent = document.getElementById('student-h1-2').value || '無紀錄';
+        document.getElementById('port-s2-h2').textContent = document.getElementById('student-h2-2').value || '無紀錄';
+
+        document.getElementById('port-s3-e1').textContent = document.getElementById('card1-notes').value || '無紀錄';
+        document.getElementById('port-s3-e2').textContent = document.getElementById('card2-notes').value || '無紀錄';
+        document.getElementById('port-s3-e3').textContent = document.getElementById('card3-notes').value || '無紀錄';
+
+        document.getElementById('port-s4-role').textContent = document.getElementById('student-role-fav').value || '無紀錄';
+        document.getElementById('port-s5-cer').textContent = (document.getElementById('cer-claim').value ? `【主張】${document.getElementById('cer-claim').value}
+【推論】${document.getElementById('cer-reasoning').value}` : '尚未生成 CER 短文');
+        document.getElementById('port-s6-policy').textContent = document.getElementById('policy-draft-box').value || '尚未草擬指引條文';
+        document.getElementById('port-s7-post').textContent = document.getElementById('student-post-stance').value || '未選擇';
+        document.getElementById('port-s7-exit').textContent = document.getElementById('exit-ticket-input').value || '無紀錄';
+      },
+
+      // Save & Load
+      autoSave() {
+        const formData = {};
+        document.querySelectorAll('input, textarea, select').forEach(el => {
+          if (el.id) {
+            formData[el.id] = el.value;
+          }
+        });
+        try {
+          localStorage.setItem('agy_student_data', JSON.stringify(formData));
+        } catch(e) {}
+      },
+
+      restoreStudentData() {
+        try {
+          const raw = localStorage.getItem('agy_student_data');
+          if (raw) {
+            const data = JSON.parse(raw);
+            Object.keys(data).forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.value = data[id];
+            });
+            // restore pills
+            if (data['student-stance-1']) {
+              document.querySelectorAll('#stance-pills .radio-pill').forEach(p => {
+                p.classList.toggle('selected', p.dataset.val === data['student-stance-1']);
+              });
+            }
+            if (data['student-post-stance']) {
+              document.querySelectorAll('#post-stance-pills .radio-pill').forEach(p => {
+                p.classList.toggle('selected', p.dataset.val === data['student-post-stance']);
+              });
+            }
+          }
+        } catch(e) {}
+      },
+
+      exportJSON() {
+        sound.playSuccess();
+        const raw = localStorage.getItem('agy_student_data') || '{}';
+        const blob = new Blob([raw], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `AI標示探究學習單_${document.getElementById('student-name').value || '學生'}.json`;
+        a.click();
+      },
+
+      importJSON(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const data = JSON.parse(e.target.result);
+            localStorage.setItem('agy_student_data', JSON.stringify(data));
+            this.restoreStudentData();
+            sound.playSuccess();
+            alert('學習歷程資料匯入成功！');
+            this.compilePortfolio();
+          } catch(err) {
+            alert('檔案格式錯誤，請確認為正確的 JSON 成果檔。');
+          }
+        };
+        reader.readAsText(file);
+      }
+    };
+
+    // Global triggers
+    window.triggerHotspot = function(id) {
+      App.showHotspot(id);
+    };
+
+    window.closeHotspotModal = function() {
+      sound.playClick();
+      document.getElementById('hotspot-modal').classList.remove('open');
+    };
+
+    window.closeC2PAModal = function() {
+      sound.playClick();
+      document.getElementById('c2pa-modal').classList.remove('open');
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      App.init();
+    });
+    
+  </script>
+</body>
+</html>
